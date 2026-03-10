@@ -1,0 +1,3464 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+  <title>Arkin's E-Portfolio</title>
+  <style>
+    :root {
+      --bg:#f7f5ff;
+      --purple-900:#3b0764;
+      --purple-700:#6b21a8;
+      --purple-500:#8b5cf6;
+      --muted:#6b6b78;
+      --card:#ffffff;
+      --highlight-bg:#e0c6ff;
+      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    * {box-sizing:border-box;margin:0;padding:0}
+    body {margin:0;background:var(--bg);color:var(--purple-900);}
+
+    header {
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:16px;
+      padding:20px;
+      background:white;
+      box-shadow:0 2px 10px rgba(0,0,0,0.05);
+      position:fixed;
+      top:0;
+      width:100%;
+      z-index:10;
+    }
+    nav ul {list-style:none;display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:0;padding:0;}
+
+    nav a {
+      padding:10px 16px;
+      border:none;
+      border-radius:10px;
+      background:transparent;
+      color:var(--purple-900);
+      font-weight:600;
+      text-decoration:none;
+      position:relative;
+      transition: all 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    nav a:hover {
+      background:linear-gradient(90deg,var(--purple-500),var(--purple-700));
+      color:white;
+      transform:translateY(-3px);
+      box-shadow:0 4px 15px rgba(139,92,246,0.5);
+    }
+
+    main  >  section {
+      width:100%;
+      min-height:100vh;
+      padding:100px 20px 60px;
+      text-align:center;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    #home:target, #home:first-of-type {
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      background:linear-gradient(180deg,#ede9fe,#faf5ff);
+    }
+
+    #home .welcome-container {
+      background-color:var(--highlight-bg);
+      padding:40px 60px;
+      border-radius:12px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:20px;
+    }
+
+    #home h1 {
+      font-size:3.5em;
+      color:var(--purple-700);
+      margin:0;
+    }
+
+    #home a {
+      display:inline-block;
+      padding:15px 30px;
+      background:var(--purple-700);
+      color:white;
+      border-radius:8px;
+      text-decoration:none;
+      font-size:1.2em;
+      transition:0.3s;
+    }
+    #home a:hover {background:var(--purple-500);}
+
+    .section-container {
+      max-width:1100px;
+      width:100%;
+      margin-top:20px;
+      background:white;
+      border-radius:12px;
+      box-shadow:0 4px 20px rgba(0,0,0,0.1);
+      padding:40px;
+      text-align:left;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .section-container:hover {
+      transform:translateY(-5px);
+      box-shadow:0 8px 25px rgba(0,0,0,0.2);
+    }
+
+    .section-container h3 {color:var(--purple-700);margin-bottom:10px;}
+    .section-container p {color:var(--muted);line-height:1.6;}
+
+    .media-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+      gap:20px;
+      margin-top:20px;
+    }
+
+    .media-grid img,
+    .media-grid video {
+      width:100%;
+      border-radius:8px;
+      box-shadow:0 2px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .media-grid img:hover,
+    .media-grid video:hover {
+      transform:scale(1.05);
+      box-shadow:0 6px 20px rgba(0,0,0,0.2);
+    }
+
+    @keyframes fadeIn {
+      from {opacity:0;transform:translateY(30px);}
+      to {opacity:1;transform:translateY(0);}
+    }
+
+    .lesson {
+      margin-top:40px;       
+      padding:20px;          
+      background:var(--card);
+      border-radius:12px;    
+      box-shadow:0 4px 15px rgba(0,0,0,0.1); 
+    }
+
+  
+    .lesson-title {
+      font-weight:bold;
+      margin-bottom:10px;
+      font-size:1.2em;       
+    }
+
+    .rounded-video {
+      border-radius: 12px; 
+      overflow: hidden;    
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      margin: 20px; 
+    }
+
+    #welcome-container {
+      background: linear-gradient(135deg, #d8b4fe, #c084fc, #e9d5ff);
+      background-size: 400% 400%;
+      padding: 170px 120px;
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+      animation: gradientBG 10s ease infinite;
+    }
+
+    @keyframes gradientBG {
+     0% {background-position: 0% 50%;}
+     50% {background-position: 100% 50%;}
+     100% {background-position: 0% 50%;}
+    }
+ 
+    #welcome-container h1 {
+     font-size: 6em;
+     color: #ffffff;
+     text-shadow: 0 0 5px #fff, 0 0 15px #fff;
+     animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+     from {text-shadow: 0 0 5px #fff, 0 0 10px #fff;}
+     to   {text-shadow: 0 0 10px #fff, 0 0 20px #fff;}
+    }
+ 
+    #welcome-container a {
+     display: inline-block;
+     padding: 22px 50px;
+     font-size: 1.5em;
+     font-weight: bold;
+     color: white;
+     border-radius: 12px;
+     background: #a78bfa;
+     box-shadow: 0 5px 20px rgba(139,92,246,0.5);
+     transition: 0.3s;
+    }
+
+   #welcome-container a:hover {
+     transform: scale(1.1) rotate(-2deg);
+     background: #c084fc;
+     box-shadow: 0 8px 25px rgba(139,92,246,0.7);
+    }
+ 
+   .social-icons {
+     display: flex;
+     gap: 20px;
+     margin-top: 30px;
+    }
+
+   .social-icons img:hover {
+     transform: scale(1.2);
+    }
+   
+   .circle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.3;
+    }
+
+   .circle1 { width: 300px; height: 300px; background: #c084fc; top: 50px; left: 30px; }
+   .circle2 { width: 250px; height: 250px; background: #d8b4fe; top: 150px; right: 50px; }
+   .circle3 { width: 190px; height: 190px; background: #e9d5ff; bottom: 40px; right: 700px; }
+
+   h2 {
+       display: inline-block;
+       background-color:#9370DB;
+       border-radius:30px;
+       padding:10px;
+      }
+
+.ap-image-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  max-width: 1100px;
+  margin: 20px auto;
+  align-items: start;
+  padding: 0 20px;
+}
+
+.ap-image-card {
+  background: linear-gradient(180deg, #fff, #faf5ff);
+  border: 1px solid rgba(139,92,246,0.12);
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 6px 18px rgba(107,33,168,0.06);
+  text-align: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.ap-image-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(107,33,168,0.12);
+}
+
+.ap-image-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  display: block;
+  margin-bottom: 10px;
+  object-fit: cover;
+}
+
+.ap-image-card figcaption {
+  color: #5d2bd1;
+  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1.3;
+}
+
+nav a.active {
+  background: linear-gradient(90deg,#8b5cf6,#6b21a8);
+  color: white;
+  box-shadow: 0 4px 15px rgba(139,92,246,0.5);
+}
+
+.lock-scroll {
+  overflow: hidden;
+  height: 100vh;
+}
+
+.section-container, .lesson {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.6s ease;
+}
+
+.quarter-dropdown {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 2px solid #e6e6e6;
+  background-color: #f7f5ff;
+  color:  #39004d;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 1rem;
+}
+
+.quarter-dropdown:hover {
+  border-color: #8b5cf6; /* highlight on hover */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.fade {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  display: none;
+}
+
+.fade.show {
+  display: block;
+  opacity: 1;
+}
+
+.tle-quarter, .ap-quarter {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.tle-quarter.show, .ap-quarter.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section-container, .lesson {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.6s ease;
+}
+
+.section-container.show, .lesson.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#expand-transition{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:#b366ff;
+  transform:scaleY(0);
+  transform-origin:bottom;
+  transition:transform 0.6s ease;
+  z-index:9999;
+}
+
+#expand-transition.active{
+  transform:scaleY(1);
+}
+
+.nav-links{
+  display:flex;
+  align-items:center;
+  list-style:none;
+}
+
+.nav-profile{
+  display:flex;
+  align-items:center;
+  margin-right:20px;
+}
+
+.profile-pic{
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  object-fit:cover;
+  margin-right:10px;
+}
+
+.profile-name{
+  font-weight:bold;
+}
+
+.events-menu a {
+  display: block;
+  font: inherit;
+  color: black !important;
+  text-decoration: none;
+  padding: 5px 3;
+  font-weight: 500;
+}
+
+.events-menu {
+  position: absolute;
+  background-color: white !important;
+  padding: 10px;
+  border-radius: 6px;
+  min-width: 150px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  z-index: 999;
+}
+
+#events {
+  text-align: center;
+}
+
+#events .section-container {
+  display: inline-block;
+  text-align: left;
+  margin: 20px auto;
+  max-width: 900px;
+}
+
+#events .media-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+#events .media-grid img,
+#events .media-grid video {
+  max-width: 100%;
+  height: auto;
+}
+
+#events h2, 
+#events h3 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.events-quarter {
+  max-width: 1000px; 
+  margin: 0 auto;   
+  text-align: center;
+  padding: 20px;   
+}
+
+.events-dropdown {
+  display: inline-block;      
+  font-weight: 550;                                       
+  transition: background 0.3s, color 0.3s;/
+  cursor: pointer;             
+}
+
+.events-dropdown:hover {
+  background-color: #bfbfbf;  
+  color: black;  
+  padding: 4px 6px;
+  border-radius: 10px;
+}
+</style>
+</head>
+<body>
+  <header>
+    <nav>
+      <ul class="nav-links">
+        <li class="nav-profile">
+         <img src="profile.jpg" class="profile-pic">
+         <span class="profile-name">Arkin Nava</span>
+        </li>
+        <li><a href="#home">Home</a> l</li>
+        <li><a href="#personal-space">My Personal Space</a> l</li>
+        <li style="position:relative;">
+         <span class="events-dropdown">School Events</span> |
+  
+         <div class="events-menu" style="display:none; position:absolute; top:100%; left:0; background:transparent;">
+           <a href="#events-q2">Quarter 2</a>
+           <a href="#events-q3">Quarter 3</a>
+           <a href="#events-q4">Quarter 4</a>
+           <a href="#events-noli">Noli Me Tangere</a>
+         </div>
+        </li>
+        <li><a href="#tle-ict">Technology & Livelihood Education</a> l</li>
+        <li><a href="#ap">Araling Panlipunan</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home">
+    <div id="welcome-container">
+     <div id="expand-transition"></div>
+    <h1>Welcome to Arkin's Website</h1>
+    <a href="#personal-space" class="learn-more">Learn More</a>
+    </div>
+    <div class="circle circle1"></div>
+    <div class="circle circle2"></div>
+    <div class="circle circle3"></div>
+
+   </section>
+
+    <section id="personal-space">
+      <h2>Personal Space</h2>
+      <div class="section-container">
+        <h3>Personal Details</h3>
+        <p>I am Arkin, currently 14 years old whose birthday is December 4, 2010, Im a student who loves learning, creating, and adventuring. My favorites are eating, sleeping, and genuinely spending time out with my friends because they are the ones who make my life happy. I wouldn't be who I am if it wasn't for my friends they make my life enjoyable.</p>
+      </div>
+      <div class="section-container">
+        <h3>Circle of Friends (Mixue Ice Cream & Tea)</h3>
+        <p>My friends are very important to me, they've seen every side of me. We've all been together since the 8th grade and we always do things together. My most memorable moment was them was everytime we all spend time together either in school or outside because if im with them im always happy and they make every moment memorable.</p>
+        <div class="media-grid">
+          <img src="friend1.jpg" alt="Friend 1" height="300">
+          <img src="friend2.jpg" alt="Friend 2" height="300">
+          <img src="friend3.jpg" alt="Friend 3" height="300">
+          <img src="friend4.jpg" alt="Friend 4" height="300">
+        </div><br>
+        <div>
+          <video controls width="1000" height="500" class="rounded-video">
+           <source src="friends-video.mp4" type="video/mp4">
+           Your browser does not support the video tag.
+          </video>
+
+        </div>
+      </div>
+      <div class="section-container">
+        <h3>My Family</h3>
+        <p>My biggest source of support and inspiration comes from my family. They help me grow as a person and teach me the importance of patience, kindness, and respect. My family always likes to travel and whenever there is a family event everybody is always laughing and having fun. Our most recent family gathering was in Cagayan where we went out to go island hopping the gathering was overall very fun because i got to spend time with my family before going back to school.</p>
+        <div class="media-grid">
+          <img src="family.jpg" alt="My Family">
+        </div>
+      </div>
+    </section>
+
+    <section id="events-q2" class="events-quarter">
+     <h2>Quarter 2</h2>
+      <div class="section-container">
+            <h3>Buwan ng Wika</h3>
+            <p><b>What is the most important thing I learned from the event?:</b> The most important thing I learned was to appreciate and value our Filipino language and culture because it shows who we are as a country.</p><br>
+            <p><b>How can I apply what I learned in real-life situations?:</b> I can use our national language more often and promote it when communicating with others, especially in school or public places.</p><br>
+            <p><b>Did I actively participate in the event? How?:</b> Yes, I participated by joining the activities and wearing traditional Filipino attire to show my support for the event.</p><br>
+            <p><b>If I were to teach this topic/subject to a classmate, how would I explain it?:</b> I would explain that Buwan ng Wika is about celebrating our language, identity, and pride as Filipinos through creative and cultural activities.</p><br>
+            <p><b>Why is it important to have an event (per subject)? Explain your answer.:</b> It helps students connect lessons to real life, develop cultural appreciation, and strengthen their sense of national pride.</p>
+          <div class="media-grid">
+          <img src="event1-pic1.jpg" alt="Event 1 Picture 1" height="200">
+          <img src="event1-pic2.jpg" alt="Event 1 Picture 2" height="200">
+          <video controls src="event1-video.mp4" height="200"></video>
+        </div>
+      </div>
+      <div class="section-container">
+        <h3>INTRAMS</h3>
+            <p><b>What is the most important thing I learned from the event?:</b> I learned the importance of teamwork, discipline, and sportsmanship whether we win or lose.</p><br>
+            <p><b>How can I apply what I learned in real-life situations?:</b> I can apply it by cooperating with others in group work and being respectful even in competition.</p><br>
+            <p><b>Did I actively participate in the event? How?:</b> Yes, I joined in Green Volleyball Men's Team and i was also cheering and helping organize our team during the games.Yes, I helped in setting up our class project which was the WINS Corner and helped to maintain our classrooms cleanliness.</p><br>
+            <p><b>If I were to teach this topic/subject to a classmate, how would I explain it?:</b> I would explain that Intrams is about developing physical skills and unity among students through sports and friendly competition.</p><br>
+            <p><b>Why is it important to have an event (per subject)? Explain your answer.:</b> It encourages teamwork, builds school spirit, and promotes physical health and discipline among students.</p>
+        <div class="media-grid">
+          <img src="event2-pic1.jpg" alt="Event 2 Picture 1" height="200">
+          <img src="event2-pic2.jpg" alt="Event 2 Picture 2" height="200">
+          <video controls src="event2-video.mp4" height="200"></video>
+        </div>
+      </div>
+      <div class="section-container">
+        <h3>SCIENCE MONTH</h3>
+            <p><b>What is the most important thing I learned from the event?:</b> I learned that science helps us understand the world and create solutions for real-life problems.</p><br>
+            <p><b>How can I apply what I learned in real-life situations?:</b> I can apply it by respecting our country’s heritage and staying informed about national issues.</p><br>
+            <p><b>Did I actively participate in the event? How?:</b> Yes, I helped in setting up our class project which was the WINS Corner and helped to maintain our classrooms cleanliness.</p><br>
+            <p><b>If I were to teach this topic/subject to a classmate, how would I explain it?:</b> I would explain that Science Month promotes creativity, discovery, and environmental awareness through fun activities.</p><br>
+            <p><b>Why is it important to have an event (per subject)? Explain your answer.:</b> It makes learning more exciting and helps students see how lessons are used in the real world.</p>
+        <div class="media-grid">
+          <img src="event3-pic1.jpg" alt="Event 3 Picture 1" height="200">
+          <img src="event3-pic2.jpg" alt="Event 3 Picture 2" height="200">
+          <video controls src="event3-video.mp4" height="200"></video>
+        </div>
+      </div>
+      <div class="section-container">
+        <h3>AP MONTH</h3>
+            <p><b>What is the most important thing I learned from the event?:</b> I learned how our history and culture shape our identity and how we can be responsible citizens.</p><br>
+            <p><b>How can I apply what I learned in real-life situations?:</b> I can apply it by respecting our country’s heritage and staying informed about national issues.</p><br>
+            <p><b>Did I actively participate in the event? How?:</b> Yes, I participated and watched the presentations related to history and culture.</p><br>
+            <p><b>If I were to teach this topic/subject to a classmate, how would I explain it?:</b> I’d explain that AP Month helps us appreciate our past and understand our role in shaping the future.</p><br>
+            <p><b>Why is it important to have an event (per subject)? Explain your answer.:</b> It deepens students understanding of history and encourages patriotism and awareness.</p>
+        <div class="media-grid">
+          <img src="event4-pic1.jpg" alt="Event 4 Picture 1" height="200">
+          <img src="event4-pic2.jpg" alt="Event 4 Picture 2" height="200">
+          <video controls src="event4-video.mp4" height="200"></video>
+        </div>
+      </div>
+      <div class="section-container">
+        <h3>TEACHER'S DAY</h3>
+            <p><b>What is the most important thing I learned from the event?:</b> I learned the value of showing appreciation and gratitude to our teachers who guide and inspire us every day.</p><br>
+            <p><b>How can I apply what I learned in real-life situations?:</b> I can express gratitude regularly by being respectful, cooperative, and thankful toward my teachers.</p><br>
+            <p><b>Did I actively participate in the event? How?:</b> Yes, I participated by joining performances and helping prepare gifts for teachers.</p><br>
+            <p><b>If I were to teach this topic/subject to a classmate, how would I explain it?:</b> I would explain that Teacher’s Day is about recognizing the hard work and dedication of teachers who shape our future.</p><br>
+            <p><b>Why is it important to have an event (per subject)? Explain your answer.:</b> It helps build appreciation, strengthens relationships between students and teachers, and reminds us to value education.</p>
+        <div class="media-grid">
+          <img src="event5-pic1.jpg" alt="Event 5 Picture 1" height="200">
+          <img src="event5-pic2.jpg" alt="Event 5 Picture 2" height="200">
+          <video controls src="event5-video.mp4" height="200"></video>
+        </div>
+      </div>
+      <div class="section-container">
+        <h3>CLUSTER MEET</h3>
+            <p><b>What is the most important thing I learned from the event?:</b> I learned that sportsmanship, teamwork, and respect are more important than winning. Competing with students from other schools helped me realize that true success is about giving your best and showing discipline.</p><br>
+            <p><b>How can I apply what I learned in real-life situations?:</b> I can apply it by being cooperative and respectful in any competition or group activity, knowing that teamwork and effort matter more than the outcome.</p><br>
+            <p><b>Did I actively participate in the event? How?:</b> Yes, I participated by supporting our athletes and helping organize materials for our school’s team. I also cheered for our players to boost their morale.</p><br>
+            <p><b>If I were to teach this topic/subject to a classmate, how would I explain it?:</b> I would explain that Cluster Meet is an interschool event where students compete in various sports, helping them develop physical strength, discipline, and friendship with others.</p><br>
+            <p><b>Why is it important to have an event (per subject)? Explain your answer.:</b> It’s important because it promotes unity, sportsmanship, and school pride while giving students a chance to represent their school and learn life lessons through competition..</p>
+        <div class="media-grid">
+          <img src="event6-pic1.jpg" alt="Event 6 Picture 1" height="200">
+          <img src="event6-pic2.jpg" alt="Event 6 Picture 2" height="200">
+          <video controls src="event6-video.mp4" height="200"></video>
+        </div>
+      </div>
+    </section>
+
+    <section id="events-q3" class="events-quarter" style="display:none;">
+     <h2>Quarter 3</h2>
+      <div class="section-container">
+            <h3>MVP</h3>
+            <p><b>What is the most important thing I learned from the event?:</b> The most important thing I learned from the MVP pageant is that confidence, respect, and good values are just as important as appearance. The event showed that true beauty comes from how a person thinks, speaks, and carries themselves, especially during the question and answer portion where participants share their ideas and values.</p><br>
+            <p><b>How can I apply what I learned in real-life situations?:</b> I can apply what I learned by being more confident when expressing my thoughts and opinions. I can also practice good values such as respect, kindness, and honesty in my daily life. Just like in the pageant, it is important to stay calm, think carefully before answering, and show good character in different situations.</p><br>
+            <p><b>Did I actively participate in the event? How?:</b> Yes, I actively participated in the event by watching the contestants, listening carefully to their answers during the Q&A portion, and supporting the participants. By observing how they presented themselves and answered questions, I was able to learn valuable lessons about confidence and communication.</p><br>
+            <p><b>If I were to teach this topic/subject to a classmate, how would I explain it?:</b> I would explain that the MVP pageant is not only about walking on the runway but also about showing confidence, intelligence, and good values. The Q&A portion is important because it allows participants to express their thoughts and demonstrate their understanding of values. It teaches us that a person's character is more important than appearance.</p><br>
+            <p><b>Why is it important to have an event (per subject)? Explain your answer.:</b> It is important to have events like the MVP pageant because they allow students to apply what they learn in class in a fun and meaningful way. Events help students develop confidence, communication skills, and appreciation for values while also encouraging participation and school spirit.</p>
+          <div class="media-grid">
+          <img src="mvp-pic1.jfif" alt="Event 1 Picture 1" height="500" width="100%">
+        </div>
+      </div>
+      <div class="section-container">
+        <h3>VPOP</h3>
+            <p><b>What is the most important thing I learned from the event?:</b> The most important thing I learned about VPOP is to enjoy the performance no matter the outcome.</p><br>
+            <p><b>How can I apply what I learned in real-life situations?:</b> I can apply it when I present in class, I'll try to focus on expressing my ideas and doing my best, rather than worrying about whether my teacher or classmates will judge me.</p><br>
+            <p><b>Did I actively participate in the event? How?:</b> Yes, I tried my best to cooperate with the choreographers whenever I am confused and I try to listen to what they're teaching.</p><br>
+            <p><b>If I were to teach this topic/subject to a classmate, how would I explain it?:</b> I would explain that VPOP is about strengthening your bond with your classmates through a dance, promoting unity within the class.</p><br>
+            <p><b>Why is it important to have an event (per subject)? Explain your answer.:</b> It encourages cooperation, strengthens the bond between class and schoolmates, and gives a chance for the students to enjoy.</p>
+        <div class="media-grid">
+          <img src="vpop-pic1.jfif" alt="Event 1 Picture 1" height="500" width="100%">
+        </div>
+      </div>
+      <div class="section-container">
+        <h3>OUTREACH PROGRAM</h3>
+            <p><b>What is the most important thing I learned from the event?:</b> The most important thing I learned from the outreach program is the value of helping others and showing compassion to people in need. It reminded me that even small acts of kindness can make a big difference in someone’s life.</p><br>
+            <p><b>How can I apply what I learned in real-life situations?:</b> I can apply what I learned by being more helpful and considerate to others in my daily life. I can also try to support people in my community whenever I have the opportunity.</p><br>
+            <p><b>Did I actively participate in the event? How?:</b> Unfortunately, I was absent during the outreach program, so I was not able to participate directly. However, I still understand the importance and purpose of the activity.</p><br>
+            <p><b>If I were to teach this topic/subject to a classmate, how would I explain it?:</b> I would explain that an outreach program is an activity where students help communities and share resources with those who need them. It teaches students the values of kindness, empathy, and service.</p><br>
+            <p><b>Why is it important to have an event (per subject)? Explain your answer.:</b> Events like outreach programs are important because they allow students to practice the values they learn in school and encourage them to care about others in their community.</p>
+        <div class="media-grid">
+          <img src="outreach-pic1.jpg" alt="Event 1 Picture 1" height="500" width="100%">
+        </div>
+        <p> CTTO: Ang Paham </p>
+      </div>
+      
+      </div>
+    </section>
+
+    <section id="events-q4" class="events-quarter" style="display:none;">
+     <h2>Quarter 4</h2>
+      <div class="section-container">
+            <h3>OPM Duet Song</h3>
+            <p><b>What is the most important thing I learned from the event?:</b> The most important thing I learned from watching the OPM duet performance is how teamwork and harmony make a performance successful. I also noticed how practice and confidence help performers connect with the audience.</p><br>
+            <p><b>How can I apply what I learned in real-life situations?:</b> I can apply this by appreciating the effort others put into their work and learning from their example. I can also use teamwork and preparation in my own projects or activities.</p><br>
+            <p><b>Did I actively participate in the event? How?:</b> I did not perform in the event, but I actively participated as an audience member by paying attention, supporting the performers, and learning from their performance.</p><br>
+            <p><b>If I were to teach this topic/subject to a classmate, how would I explain it?:</b> I would explain that the OPM Duet requires teamwork, practice, and confidence. Even by watching, we can learn how cooperation and preparation make a performance enjoyable.</p><br>
+            <p><b>Why is it important to have an event (per subject)? Explain your answer.:</b> Events like this are important because they showcase talents, encourage students to try performing, and teach the value of practice, teamwork, and appreciation for others’ efforts.</p>
+          <div class="media-grid">
+          <img src="opm-pic1.jfif" alt="Event 1 Picture 1" height="500" width="100%">
+        </div>
+      </div>
+      <div class="section-container">
+        <h3>Street Dance</h3>
+            <p><b>What is the most important thing I learned from the event?:</b> The most important thing I learned from the streetdance competition is that teamwork, practice, and confidence are key to delivering a strong performance. I also realized how energy and coordination can make a routine exciting for the audience.</p><br>
+            <p><b>How can I apply what I learned in real-life situations?:</b> I can apply this by working well with others in team projects, preparing thoroughly for any activity, and staying confident when performing or presenting.</p><br>
+            <p><b>Did I actively participate in the event? How?:</b> Yes, I actively participated as a dancer by practicing with my team, performing on stage, and coordinating with others to make our routine better and engaging.</p><br>
+            <p><b>If I were to teach this topic/subject to a classmate, how would I explain it?:</b> I would explain that streetdance requires teamwork, practice, and confidence. Performing teaches us how to work together, follow cues, and use creativity and energy to entertain and inspire others.</p><br>
+            <p><b>Why is it important to have an event (per subject)? Explain your answer.:</b> Events like this are important because they allow students to develop confidence, showcase talents, and learn the value of hard work, cooperation, and creativity in a fun and interactive way.</p>
+        <div class="media-grid">
+          <img src="sd-pic1.jfif" alt="Event 1 Picture 1" height="500" width="100%">
+        </div>
+      </div>
+      <div class="section-container">
+        <h3>Battle Of The Bands</h3>
+            <p><b>What is the most important thing I learned from the event?:</b> The most important thing I learned from watching the Battle of the Bands is how teamwork, practice, and passion are essential for a successful performance. I also noticed how energy and stage presence make music more engaging for the audience.</p><br>
+            <p><b>How can I apply what I learned in real-life situations?:</b> I can apply this by appreciating the effort others put into their work, learning from their performance, and using teamwork and preparation in my own projects or activities.</p><br>
+            <p><b>Did I actively participate in the event? How?:</b> I did not perform in the event, but I actively participated as an audience member by paying attention, supporting the performers, and observing how each band worked together.</p><br>
+            <p><b>If I were to teach this topic/subject to a classmate, how would I explain it?:</b> I would explain that BOTB requires teamwork, practice, and confidence. Even by watching, we can learn how performers coordinate, express themselves, and entertain the audience.</p><br>
+            <p><b>Why is it important to have an event (per subject)? Explain your answer.:</b> Events like this are important because they allow students to showcase their talents, develop confidence, and inspire others through creativity and teamwork.</p>
+        <div class="media-grid">
+          <img src="botb-pic1.jfif" alt="Event 1 Picture 1" height="500" width="100%">
+        </div>
+      </div>
+    </section>
+    
+    <section id="events-noli" class="events-quarter" style="display:none;">
+     <h2>Noli Me Tangere</h2>
+      <div class="section-container">
+            <h3>Noli Me Tangere Video</h3>
+            <p><b>What is the most important thing I learned from the event?:</b> The most important thing I learned from the play based on Noli Me Tangere is that teamwork and preparation are important for a successful performance, even behind the scenes.</p><br>
+            <p><b>How can I apply what I learned in real-life situations?:</b> I can apply this by being responsible and organized when working with others. As the technical director, I learned to pay attention to details and make sure everything was ready, which is important in group projects and other activities.</p><br>
+            <p><b>Did I actively participate in the event? How?:</b> Yes, I actively participated by serving as the technical director of the play. I helped manage the technical aspects and ensured that the cues and other elements worked properly during the performance.</p><br>
+            <p><b>If I were to teach this topic/subject to a classmate, how would I explain it?:</b> I would explain that performing the story of Noli Me Tangere helps students understand the novel better because they can see the characters and events come to life. It also shows how teamwork between actors and the technical team is needed to successfully present a performance.</p><br>
+            <p><b>Why is it important to have an event (per subject)? Explain your answer.:</b> Events like the Noli Me Tangere play are important because they help students understand lessons in a more interactive and creative way. Instead of only reading the story, students can see it come to life, which helps them better appreciate the themes, characters, and historical significance of the novel.</p>
+          <br>
+           <a href="https://youtu.be/BZzZuFfydwI?si=9jC-oRpvUe26G4wS" target="_blank">
+           <img src="video-preview.jpg" alt="Watch Video" height="650px" width="100%">
+          </a>
+      </div>
+    </section>
+
+ <section id="tle-ict">
+  <h2>TLE/ICT Lessons</h2>
+  <label for="tle-quarter">Select Quarter:</label>
+  <select id="tle-quarter" class="quarter-dropdown">
+    <option value="q2">Quarter 2</option>
+    <option value="q3">Quarter 3</option>
+    <option value="q4">Quarter 4</option>
+  </select>
+
+  <div class="tle-quarter fade" id="tle-q2">
+    <div class="section-container">
+        <div class="lesson">
+          <div class="lesson-title">Lesson 1</div>
+          <div class="section-container">
+      <h4>What is CSS?</h4>
+      <p>Cascading Style Sheets (CSS) helps distinguish between content and design and specifies how HTML elements appear on screens. It facilitates consistent styling and upkeep of websites.</p>
+    </div>
+    <div class="section-container">
+      <h4>Why Make Use of CSS?</h4>
+      <ul>
+        <li>Regulates fonts, colors, and layout.</li>
+        <li>Maintains page-by-page consistency in design.</li>
+        <li>Reusable styles save time.</li>
+        <li>Makes websites accessible and responsive.</li>
+      </ul>
+      <p>A webpage's layers include:</p>
+      <ul>
+        <li>Content Layer (HTML): Information and structure</li>
+        <li>Presentation Layer (CSS): Visual style and design</li>
+        <li>Behavior Layer (JavaScript): User actions and interaction</li>
+      </ul>
+    </div>
+    <div class="section-container">
+      <h4>Advantages of CSS</h4>
+      <ul>
+        <li>Reduces repetitive coding and saves time</li>
+        <li>Simple updates and upkeep</li>
+        <li>Enhances the look and design of websites</li>
+      </ul>
+    </div>
+    <div class="section-container">
+      <h4>CSS Capabilities</h4>
+      <ul>
+        <li>Quickly update layouts</li>
+        <li>Manage elements’ positions and layers</li>
+        <li>Create custom effects and tags</li>
+      </ul>
+    </div>
+    <div class="section-container">
+      <h4>Benefits of CSS</h4>
+      <ul>
+        <li>Easier updates and quicker loading</li>
+        <li>Reusable for several pages</li>
+        <li>Adaptable and easy to use</li>
+      </ul>
+        </div>
+        <div class="lesson">
+          <div class="lesson-title">Lesson 2</div>
+          <div class="section-container">
+      <h4>1. Inline CSS</h4>
+      <p>Inline CSS is written directly inside an HTML tag using the style attribute. Only that particular element is affected. It is quick for small changes but not recommended for large websites.</p>
+      <p>Example: <code>&lt;p style="color: pink; text-align: center;"&gt;Hello World&lt;/p&gt;</code></p>
+    </div>
+
+    <div class="section-container">
+      <h4>2. Internal CSS (Embedded)</h4>
+      <p>Internal CSS is written inside a <code>&lt;style&gt;</code> tag within the <code>&lt;head&gt;</code> section of the HTML. It applies to the whole page and is easier to manage than inline CSS.</p>
+      <p>Example: <code>&lt;style&gt; p { color: blue; } &lt;/style&gt;</code></p>
+    </div>
+
+    <div class="section-container">
+      <h4>3. External CSS</h4>
+      <p>External CSS is written in a separate .css file and linked to the HTML using a <code>&lt;link&gt;</code> tag. This is the most efficient method for multi-page websites.</p>
+      <p>Example: <code>&lt;link rel="stylesheet" href="style.css"&gt;</code></p>
+    </div>
+
+    <div class="section-container">
+      <h4>Benefits of Each Type</h4>
+      <ul>
+        <li><strong>Inline:</strong> Fast and element-specific.</li>
+        <li><strong>Internal:</strong> Easy to style a single page.</li>
+        <li><strong>External:</strong> Ideal for multi-page consistency and reusability.</li>
+      </ul>
+    </div>
+  </div>
+        </div>
+        <div class="lesson">
+          <div class="lesson-title">Lesson 3</div>
+          <h4>Reflection</h4>
+          <p>I learned about the div and span tags, as well as the block-level and inline-level elements. Inline elements, such as span or a tags, only use the space required, whereas block-level elements, such as div or p, fill the entire width of the webpage. i also learned that large sections can be grouped using the div tag, while smaller sections like text phrases can be styled within a line using the span tag.</p><br>
+          <img src="lesson3.jpg" alt="Lesson 3 Browser Output" width="975">
+        </div>
+        <div class="lesson">
+          <div class="lesson-title">Lesson 4</div>
+          <h4>Reflection</h4>
+          <p>I learned that you can use the same rule to style multiple elements by using classes and class selectors. using HTML, a class is applied using the class attribute and uses a period before the attribute. One style can be applied to many elements at the same time, which helps to save time and easily manage codes</p><br>
+          <img src="lesson4.jpg" alt="Lesson 4 Browser Output" width="975">
+        </div>
+        <div class="lesson">
+          <div class="lesson-title">Lesson 5</div>
+          <h4>Reflection</h4>
+          <p>In Lesson 5, I learned about CSS selectors, which are used to change and style HTML elements. I learned about different kinds of CSS Selectors like element, class, ID, universal, group, and attribute selectors. These different types of selectors make it possible to apply styles efficiently and consistently to different parts of a webpage, depending on what needs to be styled.</p><br>
+          <img src="lesson5.jpg" alt="Lesson 5 Browser Output" width="975">
+        </div>
+        <div class="lesson">
+          <div class="lesson-title">Lesson 6</div>
+          <h4>Reflection</h4>
+          <p>Finally, in Lesson 6, I learned about setting dimensions, pseudo-classes, and link properties. I learned how to set the width and height of elements, use pseudo-classes like :hover, :active, and :visited to create effects, and style links to improve design. generally, these lessons help make web pages both functional and visually appealing.</p><br>
+          <img src="lesson6.jpg" alt="Lesson 6 Browser Output" width="975">
+        </div>
+      </div>
+  </div>
+
+  <div class="tle-quarter fade" id="tle-q3">
+    <div class="section-container">
+          <div class="lesson-title">Lesson 1</div>
+          <h4>Browser Output</h4><br>
+          <img src="BO1.jpg" alt="Lesson 1 Browser Output" width="1000">
+          <img src="BO1b.jpg" alt="Lesson 1 Browser Output" width="1000">
+        </div>
+    <div class="section-container">
+          <div class="lesson-title">Lesson 2</div>
+          <h4>Browser Output</h4><br>
+          <img src="BO2.jpg" alt="Lesson 2 Browser Output" width="1000">
+          <img src="BO2b.jpg" alt="Lesson 2 Browser Output" width="1000">
+        </div>
+    <div class="section-container">
+          <div class="lesson-title">Lesson 3</div>
+          <h4>Browser Output</h4><br>
+          <img src="BO3.jpg" alt="Lesson 3 Browser Output" width="1000">
+          <img src="BO3b.jpg" alt="Lesson 3 Browser Output" width="1000">
+        </div>
+    </div>
+
+  <div class="tle-quarter fade" id="tle-q4">
+    <div class="lesson">
+  <h2 class="lesson-title">Lesson 1</h2>
+
+  <div class="section-container">
+    <h4>Purpose</h4>
+    <p>
+      To create dynamic, interactive user experiences, handling everything from UI rendering
+      (like React for Facebook) and content loading to real-time updates, personalized feeds,
+      video controls (captions, volume), and tracking user activity (Meta Pixel).
+    </p>
+  </div>
+
+  <div class="section-container">
+    <h4>Examples</h4>
+
+    <p><strong>Static Website</strong></p>
+    <p>
+      A static web page, sometimes called a flat page or a stationary page, is a web page that
+      is delivered to a web browser exactly as stored.
+    </p>
+    <p><strong>Example:</strong> Photographer’s portfolio</p>
+
+    <p><strong>VS</strong></p>
+
+    <p><strong>Dynamic Website</strong></p>
+    <p>
+      A dynamic website is a type of website that displays different content and interacts
+      with users based on their actions, preferences, or other variables.
+    </p>
+    <p><strong>Example:</strong> Social Media Platforms</p>
+  </div>
+
+  <div class="section-container">
+    <h4>JavaScript</h4>
+    <ul>
+      <li>The MOST popular & widely used scripting language on the internet.</li>
+      <li>Recognized & works in all major browsers.</li>
+      <li>Developed by Brendan Eich of Netscape under the name Mocha, which was later renamed to LiveScript.</li>
+      <li>Opened to Internet Explorer in 1996.</li>
+      <li>Enhances webpages and can be used to build video games.</li>
+      <li>A trademark of the Oracle Corporation and is licensed for use to other entities like Mozilla Foundation.</li>
+    </ul>
+  </div>
+
+  <div class="section-container">
+    <h4>JavaScript Description</h4>
+    <ul>
+      <li>A client-side, high-level scripting, interpreted & object-oriented.</li>
+      <li>
+        Client-side – the codes and formulas are processed right on the user’s own computer.
+      </li>
+      <li>
+        High-level scripting – codes are written in words that are close to English as possible.
+      </li>
+      <li>
+        Interpreted – the program is passed as source code then converted into machine code.
+      </li>
+      <li>
+        Designed to add interactivity and functionality to the Web site. Thus making the
+        contents more dynamic and the elements are enhanced.
+      </li>
+      <li>Case-sensitive.</li>
+      <li>Semi-colons at the end if each statement are not required.</li>
+    </ul>
+  </div>
+
+  <div class="section-container">
+    <h4>What can JavaScript do?</h4>
+    <ul>
+      <li>
+        Can react to events – certain events such as mouse clicks, and pre-loading of webpage
+        can lead to executing codes written in JavaScript.
+      </li>
+      <li>Can be used to validate data.</li>
+      <li>Can be used to create cookies.</li>
+      <li>Can enhance a webpage.</li>
+    </ul>
+  </div>
+
+  <div class="section-container">
+    <h4>Events</h4>
+    <p>
+      These are mouse clicks, and pre-loading of webpage that can lead to executing codes
+      within JavaScript.
+    </p>
+  </div>
+
+  <div class="section-container">
+    <h4>Form Validation</h4>
+    <p>
+      A form requires user input, instead of using server-side scripting, JavaScript can be
+      used to validate it and thus save processing time.
+    </p>
+  </div>
+
+  <div class="section-container">
+    <h4>Cookies</h4>
+    <p>
+      Used to save or retrieve information from a visitor’s computer. This can be used to
+      monitor the visitor’s internet habit and preferences.
+    </p>
+  </div>
+
+  <div class="section-container">
+    <h4>Examples of JavaScript Usage</h4>
+    <ul>
+      <li>
+        Google Search Engine – JavaScript is used extensively in the Google search engine for
+        real-time updates and efficient query handling.
+      </li>
+      <li>
+        YouTube – This popular video platform uses JavaScript for seamless, uninterrupted
+        music and video streaming, dynamic content, and drag-and-drop functionality for playlists.
+      </li>
+      <li>
+        Social Media Platforms – rely on JavaScript for features like real-time content
+        updates, infinite scrolling, and interactive menus. Facebook even developed its own
+        JavaScript framework called React.
+      </li>
+    </ul>
+  </div>
+
+  <div class="section-container">
+    <h4>Features of JavaScript</h4>
+    <ul>
+      <li>Supports all structured programming syntax in C.</li>
+      <li>
+        Has dynamic typing, the value of the variable is dependent on what the value was
+        assigned to it even during run time, the type can still change.
+      </li>
+      <li>
+        Can run locally in a Web site, so interaction within the user and the site is faster
+        or more responsive.
+      </li>
+      <li>
+        Can detect user actions, such as mouse clicks, which HTML could not do alone.
+      </li>
+      <li>
+        Can be combined with CSS to produce DHTML. DHTML can make site more flexible by
+        adding effects such as message scrollers, mouse trails and falling snow.
+      </li>
+    </ul>
+  </div>
+
+  <div class="section-container">
+    <h4>Characteristics of JavaScript</h4>
+    <ul>
+      <li>Lightweight programming language</li>
+      <li>Inserted into HTML pages</li>
+      <li>Supported by all modern web browsers</li>
+      <li>Easy to learn and encoder-friendly</li>
+      <li>Quick to download effects</li>
+      <li>No need for any extra tools to write</li>
+      <li>License-free</li>
+      <li>
+        Has a thriving and supportive online community of JavaScript developers and
+        information resources
+      </li>
+    </ul>
+  </div>
+
+  <div class="section-container">
+    <h4>Disadvantages of JavaScript</h4>
+    <ul>
+      <li>
+        Some browsers do not support JS. Examples are PDA and mobile phones do not execute
+        JS. Some browsers disable execution of JS as a security precaution.
+      </li>
+      <li>
+        Any secret embedded in JS could be extracted by a determined adversary.
+      </li>
+      <li>
+        JS and DOM (Document Object Model) provide potential for malicious authors to deliver
+        scripts to run on a client computer via web.
+      </li>
+      <li>
+        Web site authors cannot perfectly conceal how their JS operates because the code is
+        sent to the client.
+      </li>
+      <li>
+        Source codes that have been deliberately made hard to understand can be reverse
+        engineered so your codes are still exposed to possible threat.
+      </li>
+    </ul>
+  </div>
+
+  <div class="section-container">
+    <h4>Note</h4>
+    <p>
+      A script is a set of computer instructions or commands that puts together or connects
+      existing components to accomplish a new related task.
+    </p>
+    <p>
+      JavaScript is a powerful scripting language used to create web functionalities.
+    </p>
+    <p>
+      A text editor and a web browser are the tools needed in JavaScripting.
+    </p>
+    <p>
+      The basic components of JavaScript language are objects, methods and properties.
+    </p>
+  </div>
+
+  <div class="section-container">
+    <h4>How to start using JavaScript</h4>
+    <p>
+      &lt;script&gt;&lt;/script&gt; is used to connote JavaScript. We use the type attribute to
+      define the scripting language and identify its version.
+    </p>
+    <p>
+      To display an output in a web page, the <strong>document.write</strong> command should be used.
+    </p>
+  <br>
+  <h4>Browser Output</h4>
+  <br>
+  <img src="4BO1.jpg" alt="Lesson 1 Browser Output" width="1000">
+  <img src="4BO1b.jpg" alt="Lesson 1 Browser Output" width="1000">
+  </div>
+</div>
+
+  <div class="lesson">
+  <h2 class="lesson-title">Lesson 2</h2>
+
+  <div class="section-container">
+    <h4>Where can you place Scripts?</h4>
+    <p>
+      There are times when we want to execute the codes depending on the situation.
+      It could be pre-loaded, or to be triggered whenever an event happens.
+      This is possible in JavaScript. You can control the execution of the codes
+      by placing it in different sections of the HTML file.
+    </p>
+  </div>
+
+  <div class="section-container">
+    <h4>HEAD</h4>
+    <p>
+      Whenever the scripts are placed here, you are assured that they will be
+      pre-loaded – it means the scripts will be executed before anyone triggers
+      an event. Scripts are ideally placed here are for functions calls.
+    </p>
+
+<pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;JavaScript&lt;/title&gt;
+
+&lt;script type="text/JavaScript"&gt;
+function ()
+{alert("Welcome Visitor!");}
+&lt;/script&gt;
+
+&lt;/head&gt;
+
+&lt;body onload="intro()"&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
+</pre>
+  </div>
+
+  <div class="section-container">
+    <h4>BODY</h4>
+    <p>
+      Scripts that are placed here are executed when the page loads.
+    </p>
+
+<pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;JavaScript&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+&lt;script type="text/JavaScript"&gt;
+document.write ("Message by JavaScript");
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+
+  </div>
+
+  <div class="section-container">
+    <h4>HEAD & BODY</h4>
+    <p>
+      You can place your script tags whenever and how many you want to.
+    </p>
+
+<pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+&lt;title&gt;JavaScript&lt;/title&gt;
+
+&lt;script type="text/JavaScript"&gt;
+document.write ("Head Section");
+&lt;/script&gt;
+
+&lt;/head&gt;
+
+&lt;body&gt;
+
+&lt;script type="text/JavaScript"&gt;
+document.write ("Body Section");
+&lt;/script&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;
+</pre>
+
+  </div>
+
+  <div class="section-container">
+    <h4>EXTERNAL JAVASCRIPT</h4>
+    <p>
+      External JavaScript files are helpful especially if you are using them
+      to control different HTML files. There is no need to rewrite them all
+      over again. Save the file having an extension of .js.
+    </p>
+
+    <p>
+      To use the JavaScript file, all you have to do is use the src attribute
+      and provide the destination of the file.
+    </p>
+
+<pre>
+&lt;script type="text/JavaScript" src="myJavaScript.js"&gt;&lt;/script&gt;
+</pre>
+
+    <p>
+      The src attribute will point to the source of the JavaScript external file.
+      Take note that the JavaScript file does not contain the opening and
+      closing script tags.
+    </p>
+  </div>
+
+  <div class="section-container">
+    <h4>Comments in JavaScript</h4>
+    <p>
+      There are times when you want to add a statement to explain a set of codes,
+      or when we want to omit certain codes for debugging purposes,
+      this can be done by inserting a comment.
+    </p>
+
+    <p>
+      For single comments, you can use two backlash symbols;
+      for multiple line or block comments, start with a /* and end with a */.
+    </p>
+
+<pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+&lt;title&gt;JavaScript&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+&lt;script type="text/JavaScript"&gt;
+
+document.write ("My comment");
+
+// This is a single line comment
+
+/* This is a
+multiple line comment */
+
+document.write ("Their comment")
+
+&lt;/script&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;
+</pre>
+
+  </div>
+
+  <div class="section-container">
+    <h4>What are the JavaScript Guidelines?</h4>
+    <p>
+      In coding JS, it is important to know the Do’s and Don’ts.
+      This will save you time and keep you away from trouble in case
+      errors occur.
+    </p>
+
+    <p>Listed below are the guidelines.</p>
+
+    <ol>
+      <li>Case Sensitive</li>
+      <li>White Space</li>
+      <li>Breaking up of code lines</li>
+    </ol>
+  </div>
+
+  <div class="section-container">
+    <h4>1. Case Sensitive</h4>
+    <p>
+      You must be careful in naming your variables.
+      The variable <strong>myHome</strong> is not equal to <strong>MyHome</strong>.
+    </p>
+
+    <p>
+      It is important to keep track of your variables so there
+      won’t be problems in calling variables, objects or functions.
+    </p>
+
+    <p>
+      Unlike in HTML, uppercase letters are not equivalent to
+      lowercase letters in JavaScript.
+    </p>
+  </div>
+
+  <div class="section-container">
+    <h4>2. White Space</h4>
+    <p>
+      JavaScript ignores white space as long as it is within the line
+      of the code. It is a good practice to use white spaces between
+      expressions to make your codes easier to read.
+    </p>
+
+<pre>
+var name = "Grace"
+
+var name="Grace"
+</pre>
+
+    <p>These two variable declarations are accepted.</p>
+  </div>
+
+  <div class="section-container">
+    <h4>3. Breaking up of codes</h4>
+    <p>
+      You can break a code line by using a backslash ('\').
+      However, do not break the code in between commands
+      or else it will not work properly.
+    </p>
+
+<pre>
+document.write("wow\Philippines");  // Accepted
+
+document.\write("wow Philippines")  // Not accepted
+</pre>
+
+  <br>
+  <h4>Browser Output</h4>
+  <br>
+  <img src="4BO2.jpg" alt="Lesson 2 Browser Output" width="1000">
+  <img src="4BO2b.jpg" alt="Lesson 2 Browser Output" width="1000">
+  </div>
+</div>	
+
+  <div class="lesson">
+  <h2 class="lesson-title">Lesson 3</h2>
+
+  <div class="section-container">
+    <h4>Characteristics of JavaScript</h4>
+
+    <p><strong>1. Interpreted Language</strong></p>
+    <p>
+      It is an interpreted language due to the fact that it requires a browser to run.
+      JS was created to work together with HTML and requires a web browser in order
+      to run. JS source code can easily be seen when you view the source code of a
+      JS-enabled webpage.
+    </p>
+
+    <p><strong>2. Scripting Language</strong></p>
+    <p>
+      Scripting languages are treated like programming languages but they are normally
+      created to perform simple repetitive tasks. They do not come with their own
+      interfaces but they provide instructions to other programs on what to do.
+      JS does not contain the program on how the whole webpage looks like, we can
+      use it to change certain elements of the webpage through the browser.
+    </p>
+
+    <p><strong>3. Client-Side Scripting</strong></p>
+    <p>
+      There are basically two kinds of scripting for the web – client-side and
+      server-side. The key difference between these scripts is the location to
+      which they are executed. A server-side script is executed on the actual
+      server machine that hosts the webpage while a client-side script is
+      executed on the very machine that you are using.
+    </p>
+
+    <p><strong>4. Object-Oriented Programming</strong></p>
+    <p>
+      Another advantage of JS is that it presents many things as objects and lets
+      you easily manipulate them. OOP is a programming style that treats every
+      element in a system as an object. In OOP, each object has its associated
+      functions called methods which are the things that objects know how to do.
+    </p>
+  </div>
+
+
+  <div class="section-container">
+    <h4>The Key in Understanding JavaScript</h4>
+
+    <p>1. Learn at an optimal pace and do a lot of practice.</p>
+
+    <p><strong>2. Understand the concepts of objects.</strong></p>
+    <p>
+      Objects – are items that exist in the browser. The browser window,
+      the page itself, the status bar, and the date and time stored in the
+      browser are all objects.
+    </p>
+
+    <p><strong>Methods</strong></p>
+    <p>
+      Methods are actions to be performed on or by an object.
+      Methods also represent functions that are designed for
+      specific purposes like doing math or parsing strings.
+    </p>
+
+    <p><strong>Properties</strong></p>
+    <p>
+      Properties are an existing subsection of an object.
+      It is also important to learn these basic concepts in programming.
+    </p>
+
+    <p><strong>Event</strong></p>
+    <p>
+      Something which happens or which is done such as loading a page,
+      holding a mouse over a link, or clicking a link. You can actually
+      write scripts and set them to execute when a specific event occurs.
+    </p>
+
+    <p><strong>Parameter</strong></p>
+    <p>
+      Data or other objects which describe the characteristics of an object.
+    </p>
+
+    <p><strong>Type</strong></p>
+    <p>
+      Type of variable such as integer, string, floating point or Boolean.
+    </p>
+
+    <p><strong>Type Conversion</strong></p>
+    <p>
+      The act of converting a variable from one type to another.
+    </p>
+
+    <p>
+      A script is a set of computer instructions or commands that puts together
+      or connects existing components to accomplish a new related task.
+      JS is a powerful scripting language used to create web functionalities.
+      A text editor and a web browser are the tools needed in JS scripting.
+      The basic components of JS are objects, methods and properties.
+    </p>
+  </div>
+
+
+  <div class="section-container">
+    <h4>Commonly Used Properties and Methods</h4>
+
+    <p><strong>Window</strong></p>
+    <p>
+      The window object is the main object. Many of the window-object
+      properties are objects in their own right such as document,
+      frame, and location. There is no need to write the object name
+      window since it is understood.
+    </p>
+
+    <p><strong>Sample:</strong></p>
+    <ul>
+      <li>Location – to go to a new location</li>
+      <li>Open – to open a new window</li>
+      <li>setTimeout – to set a time interval before activating an event</li>
+    </ul>
+
+    <p><strong>Document</strong></p>
+    <p>
+      The document object is derived from the window object. It is the container
+      for all HTML, HEAD and BODY objects associated within the HTML tags of
+      the HTML documents. You need to write the object name to use these methods.
+    </p>
+
+    <p><strong>Sample:</strong></p>
+    <ul>
+      <li>fgColor – to set the document foreground color</li>
+      <li>cookie – to read the information stored in the cookie text file</li>
+      <li>write – to display a message</li>
+      <li>lastModified – to display the date it was last modified</li>
+    </ul>
+
+    <p><strong>Math</strong></p>
+    <p>
+      The math object provides the capability to perform math operations.
+    </p>
+
+    <p><strong>Sample:</strong></p>
+    <ul>
+      <li>PI – has the value of PI</li>
+      <li>pow(a,b) – takes the value of a to the power of b</li>
+      <li>max(a,b) – returns the larger value between a and b</li>
+      <li>min(a,b) – returns the smaller value between a and b</li>
+    </ul>
+
+    <p><strong>Navigator</strong></p>
+    <p>
+      The navigator object determines which browser is running.
+    </p>
+
+    <p><strong>Sample:</strong></p>
+    <ul>
+      <li>appName – to determine the browser’s code name</li>
+      <li>appVersion – to determine the browser’s release version</li>
+      <li>cookieEnabled – to determine whether cookies are enabled or not</li>
+      <li>platform – a description of the operating system</li>
+    </ul>
+  </div>
+
+  <div class="section-container">
+    <h4>Structure of the Code Snippet</h4>
+
+    <p>
+      The JS is placed within the head tags of HTML, meaning JS is executed
+      even before the body tags.
+    </p>
+
+    <p>
+      The script tags tell the browser that the lines of code within those
+      tags are scripts. After closing the script tag, the browser will
+      proceed with parsing normal HTML until it encounters another
+      non-HTML script or instructions.
+    </p>
+
+    <p>
+      Parsing is the process of analyzing data (usually a string of text)
+      and converting it into a structured internal format that the
+      JavaScript engine can understand, manipulate, and execute.
+    </p>
+
+    <p>
+      The document object refers to the body tags of HTML while
+      write is a method of the document object. This means that
+      JS will write the contents between the parenthesis and quotes
+      to the HTML document.
+    </p>
+
+  </div>
+
+
+  <div class="section-container">
+    <h4>Syntax Guides</h4>
+
+    <p><strong>Rules in JavaScript Syntax:</strong></p>
+
+    <ul>
+      <li>Include language="JavaScript" in the opening script tag.</li>
+      <li>Syntax format: Object.Method() or Object.Property()</li>
+      <li>JavaScript is case-sensitive.</li>
+      <li>Scripts are processed from top to bottom.</li>
+      <li>Quotes tell the browser what text should be displayed.</li>
+      <li>Quotes may be single (' ') or double (" ").</li>
+      <li>Use // for single line comments.</li>
+      <li>Use /* */ for multiple line comments.</li>
+      <li>Use + to concatenate a string.</li>
+      <li>Statements may contain a semicolon ;</li>
+    </ul>
+  </div>
+
+
+  <div class="section-container">
+    <h4>JavaScript Variables</h4>
+
+    <p>
+      Variable – a symbolic representation denoting a quantity or expression.
+      It represents a place where a quantity can be stored.
+      It is a container that contains a value which can change as required.
+    </p>
+
+  </div>
+
+
+  <div class="section-container">
+    <h4>Data Types</h4>
+
+    <ul>
+      <li>Character – any single character or symbol</li>
+      <li>String – combination of characters</li>
+      <li>Integer – whole numbers</li>
+      <li>Float (double) – decimal numbers</li>
+      <li>Boolean – TRUE or FALSE values</li>
+      <li>Function – set of instructions</li>
+      <li>Object – items that exist in the browser</li>
+      <li>Array – object that contains a set of values</li>
+      <li>Undefined – variable without a value</li>
+      <li>Null – variable defined but assigned null</li>
+    </ul>
+
+  </div>
+
+
+  <div class="section-container">
+    <h4>Declaring Variables</h4>
+
+    <p>
+      Variables are declared with a var statement.
+      It is always good practice to pre-define variables using var.
+      If declared inside a function, it can be accessed anywhere within the function.
+    </p>
+
+<pre>
+//declaring one variable
+var firstname
+
+//declaring several variables
+var firstname, lastname;
+
+//declaring one variable and assigning a value
+var firstname="Crispin";
+
+//declaring several variables and assigning a value
+var firstname="Basilio", lastname="Santiago";
+</pre>
+
+  </div>
+
+
+  <div class="section-container">
+    <h4>Rules for Naming Variables</h4>
+
+    <ul>
+      <li>Variables can contain letters, digits, and underscore.</li>
+      <li>No spaces between characters.</li>
+      <li>No punctuation characters.</li>
+      <li>The first character cannot be a digit.</li>
+      <li>Variable names are case-sensitive.</li>
+    </ul>
+  <br>
+  <h4>Browser Output</h4>
+  <br>
+  <img src="4BO3.jpg" alt="Lesson 3 Browser Output" width="1000">
+  <img src="4BO3b.jpg" alt="Lesson 3 Browser Output" width="1000">
+  </div>
+</div>
+
+  <div class="lesson">
+<h2 class="lesson-title">Lesson 4</h2>
+
+<div class="section-container">
+<h4>What are Events?</h4>
+<p>
+Events are actions that are triggered either by mouse click, function calls,
+keyboard strokes, loading of images, submitting an HTML form, etc.
+Events are usually used in connection with functions. Functions will not work
+without a force that will trigger it.
+</p>
+</div>
+
+<div class="section-container">
+<h4>Table of Event Triggers</h4>
+
+<ul>
+<li><b>onabort</b> – The loading of an image is interrupted.</li>
+<li><b>onblur</b> – An element loses focus.</li>
+<li><b>onchange</b> – The user changes the content of a field.</li>
+<li><b>onclick</b> – Mouse click of an object.</li>
+<li><b>ondblclick</b> – Double mouse click on an object.</li>
+<li><b>onerror</b> – An error occurs when loading a document or image.</li>
+<li><b>onfocus</b> – An element gets focus.</li>
+<li><b>onkeydown</b> – A keyboard key is pressed.</li>
+<li><b>onkeypress</b> – A keyboard key is held down.</li>
+<li><b>onkeyup</b> – A keyboard key is released.</li>
+<li><b>onload</b> – A page or image is finished loading.</li>
+<li><b>onmousedown</b> – A mouse button is pressed.</li>
+<li><b>onmousemove</b> – A mouse is moved.</li>
+<li><b>onmouseout</b> – The mouse is moved off an element.</li>
+<li><b>onmouseover</b> – The mouse is moved over an element.</li>
+<li><b>onmouseup</b> – A mouse button is released.</li>
+<li><b>onreset</b> – The reset button is clicked.</li>
+<li><b>onresize</b> – A window or frame is resized.</li>
+<li><b>onselect</b> – Text is selected.</li>
+<li><b>onsubmit</b> – The submit button is clicked.</li>
+<li><b>onunload</b> – The user exits the page.</li>
+</ul>
+
+</div>
+
+
+<div class="section-container">
+<h4>onload and onunload</h4>
+<p>
+The onload and onunload events are triggered when a user enters or exits a
+web page. The onload event can be used to check the web browser type and
+version. These events can also be used to store and retrieve cookies.
+A cookie is a message given to a web browser.
+</p>
+</div>
+
+<div class="section-container">
+<h4>onfocus, onblur and onchange</h4>
+<p>
+These attributes are often used with the validation of fields in a form.
+</p>
+</div>
+
+<div class="section-container">
+<h4>onsubmit</h4>
+<p>
+This attribute is used to validate all fields in the form before submitting it.
+</p>
+
+<pre>
+&lt;form method="post" action="trial.htm"
+onsubmit="return checkFields()"&gt;
+</pre>
+
+<p>
+When the submit button is clicked, it will call the function checkFields().
+The function will check all the fields in the form. If everything is correct,
+it returns true so the form will be submitted. Otherwise it returns false and
+the form submission will be cancelled.
+</p>
+</div>
+
+
+<div class="section-container">
+<h4>onmouseover and onmouseout</h4>
+<p>
+These attributes are usually used for animation purposes. For example, when
+the mouse is placed over a button or link, it may display a different image.
+When the mouse is removed, the button returns to its original form.
+</p>
+</div>
+
+<div class="section-container">
+<h4>onclick</h4>
+<p>
+This is commonly used to connect to another webpage or to trigger an event.
+For example, when a button is pressed it can activate a function that opens
+a popup box.
+</p>
+</div>
+
+
+<div class="section-container">
+<h4>What are Popup Boxes?</h4>
+<p>
+Popup boxes are windows that appear on the screen. They may appear before a
+page loads, after an event happens, or before leaving a page.
+JavaScript has three kinds of popup boxes:
+</p>
+
+<ul>
+<li>Alert box</li>
+<li>User-input prompt box</li>
+<li>Confirm box</li>
+</ul>
+
+<p>
+These popup boxes are useful for warning users, gathering input,
+or confirming actions.
+</p>
+</div>
+
+
+<div class="section-container">
+<h4>Alert Box</h4>
+
+<p>This is used to display warning messages or greetings.</p>
+
+<pre>
+alert("message");
+</pre>
+
+<pre>
+&lt;script type="text/javascript"&gt;
+function show_alert()
+{
+alert("WARNING! WARNING!");
+}
+&lt;/script&gt;
+</pre>
+
+<p>
+When the button is clicked, an alert popup message will appear.
+</p>
+
+</div>
+
+
+<div class="section-container">
+<h4>User-Input Prompt Box</h4>
+
+<p>
+This is used when you want the user to enter information before continuing.
+</p>
+
+<pre>
+prompt("message","defaultvalue");
+</pre>
+
+<pre>
+function show_prompt()
+{
+var name = prompt("Please enter your name:","nameless");
+
+if(name!=null && name!="")
+{
+document.write("Welcome " + name + "! Please come in");
+}
+}
+</pre>
+
+<p>
+The user input is stored in the variable name and then validated.
+</p>
+
+</div>
+
+
+<div class="section-container">
+<h4>Confirm Box</h4>
+
+<p>
+Used when the user must confirm or accept something.
+</p>
+
+<pre>
+confirm("message");
+</pre>
+
+<p>
+If the user clicks OK, the result is true.
+If Cancel is clicked, the result is false.
+</p>
+
+</div>
+
+
+<div class="section-container">
+<h4>What is a Variable?</h4>
+
+<p>
+A variable is a temporary storage for values and expressions.
+Expressions are formulas that use numbers and mathematical symbols.
+Example: x = 1 + 3
+</p>
+
+<p>
+The value of x will be 4.
+</p>
+
+</div>
+
+
+<div class="section-container">
+<h4>Rules for Variables</h4>
+
+<ul>
+<li>Variable names are case-sensitive.</li>
+<li>Names must begin with a letter or underscore.</li>
+<li>The rest of the name may contain letters, numbers or underscores.</li>
+<li>Avoid using reserved JavaScript words.</li>
+<li>Variables can hold numbers, expressions or string literals.</li>
+</ul>
+
+</div>
+
+
+<div class="section-container">
+<h4>Example of Variable Declaration</h4>
+
+<pre>
+var x = 5;
+var y = x + 5;
+var fan = "Standard";
+var isDone = false;
+</pre>
+
+</div>
+
+
+<div class="section-container">
+<h4>Arithmetic Operators</h4>
+
+<ul>
+<li>+ Addition</li>
+<li>- Subtraction</li>
+<li>* Multiplication</li>
+<li>/ Division</li>
+<li>% Modulus</li>
+<li>++ Increment</li>
+<li>-- Decrement</li>
+</ul>
+
+<p>
+Modulus (%) calculates the remainder after division.
+</p>
+
+</div>
+
+
+<div class="section-container">
+<h4>Comparison Statements</h4>
+
+<ul>
+<li>== equal to</li>
+<li>=== equal value and type</li>
+<li>!= not equal</li>
+<li>!== not equal value or type</li>
+<li>> greater than</li>
+<li>< less than</li>
+<li>>= greater than or equal</li>
+<li><= less than or equal</li>
+</ul>
+
+</div>
+
+
+<div class="section-container">
+<h4>Logical Operators</h4>
+
+<ul>
+<li>&& AND</li>
+<li>|| OR</li>
+<li>! NOT</li>
+</ul>
+
+<p>
+Logical operators determine relationships between expressions or values.
+</p>
+
+</div>
+
+
+<div class="section-container">
+<h4>Conditional Operator</h4>
+
+<pre>
+variablename = (condition) ? value1 : value2;
+</pre>
+
+Example:
+
+<pre>
+myFavorite = (color=="pink") ? "Terrific" : "Change color";
+</pre>
+
+</div>
+
+
+<div class="section-container">
+<h4>Conditional Statements</h4>
+
+<ul>
+<li>if statement</li>
+<li>if-else statement</li>
+<li>if-else if-else statement</li>
+<li>switch statement</li>
+</ul>
+
+</div>
+
+
+<div class="section-container">
+<h4>Example of if Statement</h4>
+
+<pre>
+if (coins==5)
+{
+document.write("<b>Buy the Orange!</b>");
+}
+</pre>
+
+</div>
+
+
+<div class="section-container">
+<h4>Example of if-else Statement</h4>
+
+<pre>
+if (coins==5)
+{
+document.write("<b>Buy the Orange</b>");
+}
+else if (coins<4)
+{
+document.write("<b>Buy the Apple</b>");
+}
+else
+{
+document.write("<b>Buy nothing</b>");
+}
+</pre>
+
+</div>
+
+
+<div class="section-container">
+<h4>Switch Statement</h4>
+
+<p>
+The switch statement works similarly to the if statement but is used when
+selecting one option among many. The break statement is used to prevent the
+program from executing other cases after a match is found.
+</p>
+
+<br>
+<h4>Browser Output</h4>
+  <br>
+  <img src="4BO4.jpg" alt="Lesson 4 Browser Output" width="1000">
+  <img src="4BO4b.jpg" alt="Lesson 4 Browser Output" width="1000">
+  </div>
+</div>
+</section>
+
+<section id="ap">
+  <h2>AP Lessons</h2>
+  <label for="ap-quarter">Select Quarter:</label>
+  <select id="ap-quarter" class="quarter-dropdown">
+    <option value="q2">Quarter 2</option>
+    <option value="q4">Quarter 4</option>
+  </select>
+
+  <div class="ap-quarter fade" id="ap-q2">
+    <div class="lesson">
+  <h3 class="lesson-title">Lesson 1: Demand</h3>
+  
+  <div class="section-container">
+    <h4>Konsepto ng Demand</h4>
+    <ul>
+      <li>Tumutukoy sa dami ng produkto o serbisyo na gusto at kayang bilhin ng mga mamimili sa isang takdang presyo at partikular na panahon.</li>
+      <li>Ang kakayahan at kagustuhan ng tao na makamit at bilhin ang isang serbisyo o produkto ay nagtatakda ng pangangailangan at kagustuhan.</li>
+    </ul>
+  </div>
+
+  <div class="section-container">
+    <h4>Kaugnayan ng Presyo sa Demand ng Tao</h4>
+    <p>Ang presyo ay pinakamahalagang determinante sa dami ng demand.</p>
+  </div>
+
+  <div class="section-container">
+    <h4>Batas ng Demand</h4>
+    <p>Kapag tumataas ang presyo, bumababa ang dami ng gusto at kayang bilhin, at kapag bumababa ang presyo, tataas naman ang dami ng gusto at kayang bilhin. (Ceteris Paribus)</p>
+  </div>
+
+  <div class="section-container">
+    <h4>Ceteris Paribus</h4>
+    <p>Ipinagpapalagay na ang presyo lamang ang salik na nakaaapekto sa pagbabago ng quantity demanded habang ang ibang salik ay hindi nagbabago.</p>
+  </div>
+
+  <div class="section-container">
+    <h4>Economic Indicators</h4>
+    <ul>
+      <li><strong>Substitution Effect:</strong> Kapag tumataas ang presyo ng isang produkto, hahanapin ng mga mamimili ang pamalit na mas mura.</li>
+      <li><strong>Income Effect:</strong> Mas malaki ang halaga ng kinikita kapag mas mababa ang presyo.</li>
+    </ul>
+  </div>
+
+  <div class="section-container">
+    <h4>Mathematical Formula</h4>
+    <p><strong>Demand = Kagustuhan + Pangangailangan</strong></p>
+  </div>
+
+  <div class="section-container">
+    <h4>Demand Function</h4>
+    <p><strong>Qd = a - bP</strong></p>
+    <ul>
+      <li>Qd = dami ng demand</li>
+      <li>a = dami ng demand kung presyo ay 0</li>
+      <li>P = presyo</li>
+      <li>b = slope ng demand function</li>
+    </ul>
+  </div>
+
+  <div class="section-container">
+    <h4>Demand Schedule</h4>
+    <p>Tsart na nagpapakita ng bilang ng mga kalakal o serbisyo na hinihiling sa mga tiyak na presyo at ugnayan sa pagitan ng presyo at halaga ng kalakal.</p>
+  </div>
+
+  <div class="section-container">
+    <h4>Demand Curve</h4>
+    <p>Grapikong representasyon ng batas ng demand. Isang linya na nagpapakita ng negatibong relasyon ng presyo at bilang ng produktong handang bilhin ng mamimili.</p>
+  </div>
+
+  <div class="section-container">
+    <h4>Mga Salik ng Demand</h4>
+    <ul>
+      <li>Kita ng mga Mamimili</li>
+      <li>Populasyon</li>
+      <li>Panlasa</li>
+      <li>Substitute Products</li>
+      <li>Inaasahan ng mga Mamimili</li>
+      <li>Panahon o Klima</li>
+    </ul>
+  </div>
+  <div class="ap-image-row">
+  <figure class="ap-image-card">
+    <img src="ap-pic1.jpg" alt="AP Image 1">
+  </figure>
+
+  <figure class="ap-image-card">
+    <img src="ap-pic2.jpg" alt="AP Image 2">
+  </figure>
+</div>
+</div>
+
+<div class="lesson">
+  <h3 class="lesson-title">Lesson 2: Supply</h3>
+  
+  <div class="section-container">
+    <h4>Konsepto ng Supply</h4>
+    <p>Dami ng produkto o serbisyo na gustong ibenta ng mga prodyuser sa isang takdang presyo at partikular na panahon.</p>
+  </div>
+
+  <div class="section-container">
+    <h4>Ugnayan ng Presyo sa Supply ng Mga Produkto</h4>
+    <p>Pinakamahalagang nagtatakda (determinant) sa dami ng supply ay ang presyo.</p>
+  </div>
+
+  <div class="section-container">
+    <h4>Batas ng Supply</h4>
+    <p>Kapag tumataas ang presyo, tataas ang dami ng gusto at kayang ibenta, at kapag bumababa ang presyo, bababa naman ang dami ng gusto at kayang ibenta. (Ceteris Paribus)</p>
+  </div>
+
+  <div class="section-container">
+    <h4>Mathematical Formula</h4>
+    <p><strong>Supply = Pagnanais + Kakayahan</strong></p>
+  </div>
+
+  <div class="section-container">
+    <h4>Supply Schedule</h4>
+    <p>Talahanayang nagpapakita kung gaano karaming produkto o serbisyo ang nais gawin ng mga prodyuser.</p>
+  </div>
+
+  <div class="section-container">
+    <h4>Supply Curve</h4>
+    <p>Grapikong representasyon kung gaano karaming produkto o serbisyo ang nais gawin ng mga prodyuser.</p>
+  </div>
+
+  <div class="section-container">
+    <h4>Supply Function</h4>
+    <p>Isang mathematical equation na nagpapakita sa relasyon ng dami:</p>
+    <p><strong>Qs = c + bP</strong></p>
+    <ul>
+      <li>Qs = dami ng supply</li>
+      <li>c = dami ng supply kung ang presyo ay 0</li>
+      <li>P = presyo</li>
+      <li>b = slope ng supply function - interval na pagbabago</li>
+    </ul>
+  </div>
+
+  <div class="section-container">
+    <h4>Mga Salik ng Supply</h4>
+    <ul>
+      <li>Pagbabago sa teknolohiya</li>
+      <li>Pagbabago sa halaga ng mga salik ng produksyon</li>
+      <li>Pagbabago sa bilang ng mga nagtitinda</li>
+      <li>Pagbabago sa presyo ng kaugnay na produkto (Complementary at Substitute Products)</li>
+      <li>Ekspektasyon ng presyo</li>
+      <li>Okasyon/Tradisyon</li>
+      <li>Panahon/Klima</li>
+      <li>Dali ng pagkasira / pagkabulok ng isang produkto</li>
+      <li>Kalamidad</li>
+      <li>Subsidiya / tulong mula sa pamahalaan</li>
+    </ul>
+  </div>
+  <div class="ap-image-row">
+  <figure class="ap-image-card">
+    <img src="ap-pic3.jpg" alt="AP Image 1">
+  </figure>
+
+  <figure class="ap-image-card">
+    <img src="ap-pic4.jpg" alt="AP Image 2">
+  </figure>
+</div>
+</div>
+      
+<div class="lesson">
+  <h3 class="lesson-title">Lesson 3: Price Elasticity</h3>
+  
+  <div class="section-container">
+    <h4>Elastisidad</h4>
+    <p>Pamamaraan ng pagsukat ng tugon ng mga mamimili at nagtitinda sa pagbabago ng presyo.</p>
+  </div>
+
+  <div class="section-container">
+    <h4>1. Elastisidad ng Demand</h4>
+    <p>Pagsukat ng porsyento ng pagtugon ng mamimili sa pagbabago ng presyo.</p>
+  </div>
+
+  <div class="section-container">
+    <h4>2. Elastisidad ng Supply</h4>
+    <p>Pagsukat ng porsyento ng pagtugon ng prodyuser sa pagbabago ng presyo.</p>
+  </div>
+
+  <div class="section-container">
+    <h4>Mga Uri ng Elastisidad</h4><br>
+    <ul>
+      <li><strong>Elastic:</strong> Ang demand o supply ay matatawag na price elasticity kapag mas malaki ang bahagda ng pagtugon ng quantity demanded/supplied kaysa sa bahagda ng pagbabago ng presyo. /E &gt; 1/</li><br>
+      <li><strong>Di-Elastic:</strong> Maliit ang naging bahagda ng pagtugon ng demand/supply kaysa sa bahagda ng pagbabago ng presyo. /E &lt; 1/</li><br>
+      <li><strong>Unitary:</strong> Pareho ang bahagda ng pagbabago ng presyo sa bahagda ng pagbabago ng quantity demanded. /E = 1/</li><br>
+      <li><strong>Ganap na Elastik:</strong> Ang pagbabago ng presyo ay nagdudulot ng infinite na pagbabago sa quantity demanded/supplied. /E = &infin;/</li><br>
+      <li><strong>Di-Ganap na Elastik:</strong> Hindi tumutugon sa pagbabago ng presyo; kahit ang presyo ay bibilhin pa rin ang kaparehong dami ng produkto. /E = 0/</li>
+    </ul>
+  </div>
+  <div class="ap-image-row">
+  <figure class="ap-image-card">
+    <img src="ap-pic5.jpg" alt="AP Image 1">
+  </figure>
+
+  <figure class="ap-image-card">
+    <img src="ap-pic6.jpg" alt="AP Image 2">
+  </figure>
+</div>
+</div>
+
+<div class="lesson">
+  <h3 class="lesson-title">Lesson 4: Market Equilibrium</h3>
+  
+  <div class="section-container">
+    <h4>Market Equilibrium</h4>
+    <p>
+      Ito ay isang kalagayan na walang sinumang mamimili at nagbibili ang gustong baguhin ang kasalukuyang sitwasyon sa pamilihan. 
+      Ipinapakita ng ekwilibriyo ang pagkakasundo ng bumubili at nagbibili sa isang takdang presyo at dami ng produkto.
+    </p>
+  </div>
+
+  <div class="section-container">
+    <h4>Talahanayan</h4>
+    <p>Maaari ding makuha ang equilibrium price sa pamamagitan ng demand at supply function.</p>
+  </div>
+
+  <div class="section-container">
+    <h4>Tandaan</h4>
+    <ul>
+      <li>Kung bumaba ang presyo, gaganahan ang mamimili na bumili at magkakaroon ng shortage dahil sa kakulangan ng supply.</li><br>
+      <li>Kapag alinman sa isa ang tumaas o bumaba at hindi na ito balance, magkakaroon ng disequilibrium.</li><br>
+      <li>Kung tumaas ang presyo, ang mga prodyuser ay gaganahang magprodyus ng marami, ngunit ang pagtaas ng presyo ay makakabawas sa kakayahan ng mamimili na bumili. Magkakaroon ng labis na supply o surplus.</li>
+    </ul>
+  </div>
+  <div class="ap-image-row">
+  <figure class="ap-image-card">
+    <img src="ap-pic7.jpg" alt="AP Image 1">
+  </figure>
+
+  <figure class="ap-image-card">
+    <img src="ap-pic8.jpg" alt="AP Image 2">
+  </figure>
+</div>
+</div>
+
+<div class="lesson">
+  <h3 class="lesson-title">Lesson 5: Iba’t Ibang Estruktura ng Pamilihan</h3>
+  
+  <div class="section-container">
+    <h4>Pamilihan</h4>
+    <ul>
+      <li>Ang pamilihan ay ang nagsisilbing tagpuan ng mga prodyuser at konsyumers.</li>
+      <li>Ayon kay Adam Smith, may "invisible na kamay" (presyo) ang gumagabay sa prodyuser at konsyumer upang maisaayos ang pamilihan.</li>
+    </ul>
+  </div>
+
+  <div class="section-container">
+    <h4>Istraktura ng Pamilihan</h4>
+    <p>Tumutukoy sa balangkas na umiiral sa sistema ng pamilihan kung saan ipinapakita ang ugnayan ng konsyumer at prodyuser.</p>
+  </div>
+
+  <div class="section-container">
+    <h4>Ganap na Kompetisyon</h4>
+    <ul>
+      <li>Maraming maliliit na konsyumer at prodyuser.</li>
+      <li>Magkakatulad ang produkto.</li>
+      <li>Malayáng paggalaw ng sangkap ng produksyon.</li>
+      <li>Malayáng nakakapasok o nakakalabas sa industriya.</li>
+      <li>Malayáng impormasyon ukol sa pamilihan.</li>
+    </ul>
+  </div>
+
+  <div class="section-container">
+    <h4>Di-Ganap na Kompetisyon</h4>
+    <p>Sa istrakturang ito ay may kakayahan na maimpluwensyahan ang presyo sa pamilihan.</p>
+  </div>
+
+  <div class="section-container">
+    <h4>Monopolyo</h4>
+    <ul>
+      <li>Iisa lamang ang nagtitinda o kumokontrol.</li>
+      <li>Walang direktang kapalit.</li>
+      <li>Ang produkto ay lubhang mahalaga.</li>
+      <li>May kakayahan hadlangan ang mga kalaban.</li>
+      <li>Ang mga konsyumer ay napipilitang tanggapin ang pagiging makapangyarihan ng monopolista.</li>
+    </ul>
+  </div>
+
+  <div class="section-container">
+    <h4>Monopsonyo</h4>
+    <p>Mayroon lamang iisang konsyumer ngunit maraming prodyuser ng produkto o serbisyo.</p>
+  </div>
+
+  <div class="section-container">
+    <h4>Oligapolyo</h4>
+    <p>Kaunti lamang ang prodyuser, ngunit marami ang konsyumer.</p>
+  </div>
+
+  <div class="section-container">
+    <h4>Monopolistikong Kompetisyon</h4>
+    <ul>
+      <li>Marami ang prodyuser at konsyumer.</li>
+      <li>May kakayahan ang prodyuser na magtakda ng sarili niyang presyo.</li>
+      <li>Product Differentiation.</li>
+    </ul>
+  </div>
+  <div class="ap-image-row">
+  <figure class="ap-image-card">
+    <img src="ap-pic9.jpg" alt="AP Image 1">
+  </figure>
+
+  <figure class="ap-image-card">
+    <img src="ap-pic10.jpg" alt="AP Image 2">
+  </figure>
+</div>
+</div>
+      <div class="lesson">
+  <h3 class="lesson-title">Lesson 6: Price Control</h3>
+  
+  <div class="section-container">
+    <h4>Bahaging Ginampanan ng Pamahalaan sa Regulasyon ng mga Gawaing Pangkabuhayan</h4>
+    <p>Paraan ng pagkontrol sa presyo:</p>
+    <ul>
+      <li>Price Ceiling</li>
+      <li>Price Floor</li>
+    </ul>
+  </div>
+
+  <div class="section-container">
+    <h4>Price Control</h4>
+    <p>Ang price control ay ang ipinatutupad ng gobyerno sa presyo ng mga bilihin at serbisyo upang mapanatili ang kanilang abot-kayang halaga o upang masiguro ang minimum na kita ng mga prodyuser.</p>
+  </div>
+
+  <div class="section-container">
+    <h4>Republic Act 7581</h4>
+    <p>Kilala bilang Price Control Act. Layunin nito na maisagawa ng pamahalaan ang pagkontrol sa presyo ng mga bilihin.</p>
+  </div>
+
+  <div class="section-container">
+    <h4>National Price Coordination Council</h4>
+    <p>Layunin nitong mabantayan ang presyo ng mga produkto pagkatapos magpalabas ng price ceiling ang pamahalaan.</p>
+  </div>
+
+  <div class="section-container">
+    <h4>Price Ceiling</h4>
+    <ul>
+      <li>Pinakamataas na presyong itinakda ng pamahalaan upang ipagbili ang mga produkto.</li>
+      <li>Isinasagawa upang protektahan ang mga mamimili laban sa abusadong negosyante.</li>
+      <li>Itinakda mas mababa sa equilibrium price na umiiral sa pamilihan.</li>
+    </ul>
+  </div>
+
+  <div class="section-container">
+    <h4>Price Freeze</h4>
+    <p>Pagbabawal sa pagtataas ng presyo sa pamilihan. Ipinatutupad upang mapigilan ang pananamantala ng mga negosyante.</p>
+  </div>
+
+  <div class="section-container">
+    <h4>Floor Price</h4>
+    <p>Pinakamababa na presyong itinakda ng pamahalaan upang ipagbili ang mga produkto.</p>
+  </div>
+
+  <div class="section-container">
+    <h4>Advantage ng Price Control</h4>
+    <ul>
+      <li>Napananatili ang abot-kayang presyo para sa mga mamimili.</li>
+      <li>Naipagtatanggol ang kapakanan ng mahihirap.</li>
+      <li>Napananatili ang katatagan ng pamilihan.</li>
+    </ul>
+  </div>
+
+  <div class="section-container">
+    <h4>Disadvantage ng Price Control</h4>
+    <ul>
+      <li>Magkakaroon ng kakulangan ng supply.</li>
+      <li>Mawawalan ng gana ang prodyuser na magtinda.</li>
+      <li>Magkakaroon ng illegal na bentahan o black market.</li>
+    </ul>
+  </div>
+  <div class="ap-image-row">
+  <figure class="ap-image-card">
+    <img src="ap-pic11.jpg" alt="AP Image 1">
+  </figure>
+
+  <figure class="ap-image-card">
+    <img src="ap-pic12.jpg" alt="AP Image 2">
+  </figure>
+</div>
+</div>
+</div>
+ 
+  <div class="ap-quarter fade" id="ap-q4" style="display:none;">
+    <div class="lesson">
+  <h3 class="lesson-title">Lesson 1: Pambansang Kaunlaran</h3>
+
+  <div class="section-container">
+    <h4>Konsepto ng Pambansang Kaunlaran</h4>
+    <p>Isang estado ng bansa kung saan tinatamasa ng mga tao mula sa pinakamababang uri ng mamamayan ang nakakamanghang pagbabago sa ekonomiya at pamumuhay</p>
+  </div>
+
+  <div class="section-container">
+    <h4>Mga Konsepto</h4>
+    <ul>
+      <li><strong>Pagbabago:</strong> Proseso ng pagiging iba o pagkakaroon ng kaibahan sa lipunan at ekonomiya.</li><br>
+      <li><strong>Pag-unlad:</strong>
+       <ul>
+        <li> Pag-angat mula sa mababang antas tungo sa mataas na antas ng pamumuhay. </li>
+        <li> Isang progresibo at aktibong proseso at ang pagsulong ay produkto nito (FAJARDO) </li>
+        <li> Ang kaunlaran ay matatamo lamang kung mapauunlad ang yaman ng buhay ng mga tao kaysa sa yaman ng ekonomiya nito (AMARTYA SEN) </li><br>
+       </ul>
+      </li>
+      <li><strong>Pagsulong:</strong> Pag-usad tungo sa layunin at pagpapalago ng kaalaman, kakayahan, at abilidad.</li><br>
+      <li><strong>Ebolusyon:</strong> Pagbabago sa mga katangian sa mahabang panahon; mas mainam ang unang yugto kaysa sa sumunod.</li>
+    </ul>
+  </div>
+
+  <div class="section-container">
+    <h4>Dalawang Konsepto ng Pag-unlad (Todaro & Smith, 2012)</h4>
+    <ul>
+      <li><strong>Tradisyonal:</strong> Pagtamo ng patuloy na pagtaas ng income per capita. </li>
+      <li><strong>Makabago:</strong> Dapat na kumakatawan sa malawakang pagbabago sa buong sistemang panlipunan. </li>
+    </ul>
+  </div>
+
+  <div class="section-container">
+    <h4>Mga Salik ng Pag-unlad</h4>
+    <ul>
+      <li>Likas na yaman</li>
+      <li>Yamang-tao</li>
+      <li>Kapital</li>
+      <li>Teknolohiya at inobasyon</li>
+    </ul>
+  </div>
+
+  <div class="section-container">
+    <h4>Palatandaan ng Pag-unlad</h4>
+    <ul>
+      <li>Makatwiran at dinamikong kaayusan ng panlipunan</li>
+      <li>Kasaganaan at kasarinlan</li>
+      <li>Kalayaan sa kahirapan, hanapbuhay para sa lahat, at maayos na uri ng pamumuhay</li>
+      <li>Sapat na mga lingkurang panlipunan</li>
+      <li>Katarungang panlipunan</li>
+    </ul>
+  </div>
+
+  <div class="section-container">
+    <h4>Antas ng Kaunlaran</h4>
+    <ul>
+      <li><strong>Maunlad na Bansa:</strong> Mataas ang GDP, income per capita, at HDI.</li>
+      <li><strong>Umuunlad na Bansa:</strong> May industriyang pinauunlad ngunit hindi pa mataas ang antas ng industriyalisasyon; hindi pantay ang GDP at HDI.</li>
+      <li><strong>Papaunlad na Bansa:</strong> Kakulangan sa industriyalisasyon; mababang antas ng agrikultura, GDP, income per capita, at HDI.</li>
+    </ul>
+  </div>
+
+  <div class="section-container">
+    <h4>Sukatan ng Kaunlaran (HDI)</h4>
+    <p>Human Development Index – Pangkalahatang sukat ng kakayahan ng isang bansa na matugunan ang mahahalagang aspekto ng kaunlarang pantao. Kabilang dito ang kalusugan, edukasyon, at antas ng pamumuhay.</p>
+  </div>
+
+  <div class="section-container">
+    <h4>Tungkulin ng Mamamayan</h4>
+    <ul>
+      <li>Suportahan ang pamahalaan</li>
+      <li>Sundin at igalang ang batas</li>
+      <li>Alagaan ang kapaligiran</li>
+      <li>Tumulong labanan ang korapsyon</li>
+      <li>Maging produktibo at tangkilikin ang produktong Pilipino</li>
+      <li>Magtipid ng enerhiya</li>
+      <li>Makilahok sa gawaing pansibiko</li>
+    </ul>
+  </div>
+
+  <div class="section-container">
+    <h4>Gampanin ng Mamamayan</h4>
+    <ul>
+      <li>Mapanagutan – tamang pagbabayad ng buwis</li>
+      <li>Makialam – bumuo o sumali sa kooperatiba, magnegosyo</li>
+      <li>Maalam – tamang pagboto, pakikilahok sa proyekto</li>
+      <li>Makabansa – pakikilahok sa pamamahala, pagtangkilik sa produkto ng bansa</li>
+    </ul>
+  </div>
+
+  <div class="ap-image-row">
+    <figure class="ap-image-card">
+      <img src="ap-kaunlaran1.jpg" alt="Pambansang Kaunlaran 1">
+    </figure>
+    <figure class="ap-image-card">
+      <img src="ap-kaunlaran2.webp" alt="Pambansang Kaunlaran 2">
+    </figure>
+  </div>
+ </div>
+
+<div class="lesson">
+  <h3 class="lesson-title">Lesson 2: Agrikultura</h3>
+
+  <div class="section-container">
+    <h4>Konsepto</h4>
+    <p>Isang agham at sining na may kinalaman sa pagpaparami ng mga hayop at mga tanim o halaman
+      Ito ay may kaugnayan sa lahat ng gawain na sangkot ang mga hayop at halaman</p>
+    <p>AGER=Lupa; CULTURA=Paglilinang</p>
+  </div>
+
+  <div class="section-container">
+    <h4>Mga Gawain</h4>
+    <ul>
+      <li><b>Pagsasaka</b> – Pangunahing pananim: palay, mais, niyog, tubo, saging, pinya, atbp. na karaniwang kinokonsumo sa loob at labas ng bansa.
+       Tinatayang umabot ng ₱797.731 bilyon ang kita mula sa pagsasaka</li>
+      <li><b>Pangingisda</b> – Nauuri sa tatlo: komersiyal, munisipal, at aquaculture.
+       Bahagi din nito ay ang panghuhuli ng hipon, sugpo</li>
+      <li><b>Paghahayupan</b> – May kinalaman sa mga hayop na itinaas para sa karne, hibla, gatas, itlog, atbp.
+       Kasama rito ang pang-araw-araw na pangangalaga, pumipili ng pag-aanak at pagpapalaki ng mga hayop.</li>
+      <li><b>Paggugubat/pagtotroso</b> – Patuloy na nililinang ang ating mga kagubatan bagamat tayo ay nahaharap sa suliranin ng pagkaubos ng mga yaman nito.
+       Pinagkukunan ng: plywood, tabla, troso, at veneer. Pinagkakakitaan din ang rattan, nipa, anahaw, kawayan, atbp.</li>
+    </ul>
+  </div>
+
+  <div class="section-container">
+    <h4>Kahalagahan</h4>
+    <ul>
+      <li>Pinagmumulan ng pagkain</li>
+      <li>Pinagkukunan ng hilaw na materyales upang makabuo ng panibagong produkto</li>
+      <li>Nagkakaloob ng trabaho sa maraming Pilipino</li>
+      <li>Nagpapasok ng dolyar sa ating bansa</li>
+      <li>Pinagkukunan ng sobrang manggagawa patungo sa ibang sektor ng ekonomiya</li>
+    </ul>
+  </div>
+
+  <div class="section-container">
+    <h4>Suliranin</h4>
+    <ul>
+      <li>Pagsasaka: maliit na lupa, kakulangan ng teknolohiya at suporta, climate change</li>
+      <li>Pangingisda: polusyon, overfishing, kahirapan</li>
+      <li>Paghahayupan: peste sa alagang hayop</li>
+      <li>Paggugubat: pagkaubos ng likas na yaman</li>
+    </ul>
+  </div>
+
+  <div class="section-container">
+    <h4>Mga Patakaran at Programa</h4>
+    <ul>
+      <li>CARP (R.A. 6657, 1988)</li>
+      <li>Pangulong Diosdado Macapagal Agrarian Reform Scholarship Program</li>
+      <li>CLASP, NIPAS, Sustainable Forest Management</li>
+      <li>Philippine Fisheries Code of 1998</li>
+      <li>Suporta mula sa DA, BFAR, BAI, ERDB, at Landbank</li>
+    </ul>
+  </div>
+
+  <div class="section-container">
+    <h4>Panahon na Hindi Pa Nasasakop ang Pilipinas</h4>
+    <ul>
+      <li>Ang mga sinaunang Pilipino ay nakakapagmay-ari ng lupa sa pamamagitan ng pagiging unang nagtayo ng bahay.</li>
+      <li>Wala pang titulo/rights noon.</li>
+      <li>Ang pinagbabahasan lamang ay salita ng bawat isa.</li>
+    </ul>
+  </div>
+
+  <div class="section-container">
+    <h4>Panahon ng Kastila</h4>
+    <ul>
+      <li><strong>Encomienda System:</strong></li>
+      <ul>
+        <li><strong>Encomienda</strong> - lupang gantimpala sa matapat na naglilingkod sa hari ng Espanya at mga taong tumulong sa pananakop sa Pilipinas.</li>
+      </ul>
+    </ul>
+  </div>
+
+  <div class="section-container">
+    <h4>Panahon ng Amerikano</h4>
+    <ul>
+      <li>Binili ng Amerika ang 160,000 hectares ng lupa mula sa mga prayle para sa mga magsasaka.</li>
+
+      <li><strong>Land Registration Act ng 1902:</strong></li>
+      <ul>
+        <li>Nagkaroon ng mga titulo dahil dito.</li>
+        <li>Ito ay sistemang Torrens, kung saan ang mga titulo ng lupa ay pinagtatalaga ng lahat.</li>
+      </ul>
+
+      <li><strong>Public Land Act ng 1902:</strong></li>
+      <ul>
+        <li>Pamahagi ng mga lupain pampubliko sa mga pamilya na nagbubungkal ng lupa.</li>
+      </ul>
+    </ul>
+  </div>
+
+  <div class="section-container">
+    <h4>Panahon ng Kasarinlan</h4>
+    <ul>
+      <li><strong>Batas Republika Blg. 1160:</strong>
+        <ul>
+          <li>Nagtatag sa National Resettlement and Rehabilitation Administration (NARRA).</li>
+        </ul>
+      </li>
+
+      <li><strong>Batas Republika Blg. 1190 ng 1954:</strong>
+        <ul>
+          <li>Bilang proteksyon laban sa mapang-abuso na may-ari ng lupa sa mga manggagawa.</li>
+          <li>Ito ay laban sa mga Absentee Landlord.</li>
+        </ul>
+      </li>
+
+      <li><strong>Agricultural Land Reform Code of 1963:</strong>
+        <ul>
+          <li>Nagpalaya sa mabigat na trabaho ng magsasaka mula sa kanilang pagkakalipin sa utang at kahirapan.</li>
+          <li>Nailagdaan ni Diosdado Macapagal noong Agosto 8, 1963.</li>
+        </ul>
+      </li>
+
+      <li><strong>Atas ng Pangulo Blg. 2 ng 1972:</strong>
+        <ul>
+          <li>Isinailalim sa reporma sa lupa ang buong Pilipinas noong panahon ni Pangulong Marcos.</li>
+        </ul>
+      </li>
+
+      <li><strong>Atas ng Pangulo Blg. 27:</strong>
+        <ul>
+          <li>Bibilhin ng pamahalaan ang mga lupang sakahan na taniman ng palay/mais na lampas sa 7 ektaryang limitasyon at ipamamahagi ito sa mga magsasakang walang lupa.</li>
+        </ul>
+      </li>
+
+      <li><strong>Batas Republika Blg. 6657 ng 1988:</strong>
+        <ul>
+          <li><strong>Comprehensive Agrarian Reform Law (CARL)</strong> na inaprubahan ni Corazon Aquino noong Hunyo 10, 1988.</li>
+          <li>Kabilang dito ang lahat ng publiko at pribadong lupang agrikultural at nakapaloob sa <strong>Comprehensive Agrarian Reform Program (CARP)</strong>.</li>
+          <li>Ipinamamahagi ang lahat ng lupang agrikultural anuman ang tanim nito sa mga walang lupang magsasaka.
+           Matatapos sana sa 10 taon ngunit ginagawa pa rin ang batas hanggang ngayon.</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="section-container">
+    <h4>MGA NAISAKATUPARAN UPANG MAIANGAT ANG KALAGAYANG PANGKABUHAYAN NG MGA MAGSASAKA (CARP, 2003)</h4>
+    <ol>
+      <li>Pagtatayo ng bahay-ugnayan (bagsakan) para sa mga magsasaka upang masigurong mayroon suportang maibigay sa kanila.</li>
+      <li>Pagtatayo ng gulayan para sa mga magsasaka. </li>
+      <li>Pagsisiguro na ang mga anak ng mga magsasaka ay makapag-aral kaya itinayo ang Pangulong Diosdado Macapagal Agrarian Reform Scholarship Program.</li>
+      <li>Kalahi agrarian reform zones.</li>
+    </ol>
+  </div>
+
+  <div class="section-container">
+    <h4>Hindi sakop ng CARP ang:</h4>
+    <ul>
+      <li>Liwasan at parke</li>
+      <li>Mga gubat at reforestation area</li>
+      <li>Mga palaisdaan</li>
+      <li>Tanggulang pambansa</li>
+      <li>Paaralan</li>	
+      <li>Simbahan</li>
+      <li>Sementeryo</li>
+      <li>Templyo</li>
+      <li>Watershed, atbp</li>
+    </ul>
+  </div>
+
+  <div class="section-container">
+    <h4>PANGINGISDA</h4>
+    <ul>
+      <li>Pagtatayo ng mga daungan</li>
+      <li>Philippine Fisheries Code of 1998: Paglilimita ng pamahalaan at naglalayon ng wastong paggamit sa yamang pangisdaan.</li>
+      <li> Fishery Research: Isang programa ng pamahalaan na isinasagawa upang masiguro ang pagpaparami at pagpapayaman sa mga yamang-tubig</li>
+    </ul>
+  </div>
+
+  <div class="section-container">
+    <h4>PAGTOTROSO</h4>
+    <ul>
+      <li>Community Livelihood Assistance Program (CLASP): Paglilipat ng teknolohiya/pagtuturo sa mga mamamayan ng wastong paglinang sa mga likas na yaman.</li>
+      <li>National Integrated Protected Areas System (NIPAS): Maingatan at protektahan ang kagubatan</li>
+      <li>Sustainable Forest Management Strategy: Upang matakdaan ang permanente at sukat ng kagubatan</li>
+    </ul>
+  </div>
+
+  <div class="section-container">
+    <h4>LANDBANK OF THE PHILIPPINES</h4>
+    <p>Upang magkaroon ng kaagapay ang mga magsasaka sa pagpapaunlad ng kanilang kabuhayan.</p>
+  </div>
+
+  <div class="section-container">
+    <h4>SANGAY NG PAMAHALAAN NA TUMUTULONG SA SEKTOR NG AGRIKULTURA</h4>
+    <ul>
+      <li>Department of Agriculture (DA): 
+        Gumagabay sa mga magsasaka ukol sa makabagong teknolohiya at wastong paraan ng pagtatanim.</li>
+      <li>Bureau of Fisheries and Aquatic Resources (BFAR): Sinisikap na paunlarin ang larangan ng pangingisda.</li>
+      <li>Bureau of Animal Industry (BAI): Nangangasiwa sa larangan ng paghahayupan.</li>
+      <li>Ecosystem Research and Development Bureau (ERDB): Nagsasagawa ng pananaliksik sa ecosystem upang magbigay ng siyentipikong batayan sa pangangalaga ng kapaligiran at yamang gubat.</li>
+    </ul>
+  </div>
+
+
+  <div class="ap-image-row">
+    <figure class="ap-image-card">
+      <img src="ap-agrikultura1.webp" alt="Agrikultura 1">
+    </figure>
+    <figure class="ap-image-card">
+      <img src="ap-agrikultura2.jpg" alt="Agrikultura 2">
+    </figure>
+  </div>
+</div>
+
+<div class="lesson">
+  <h3 class="lesson-title">Lesson 3: Industriya</h3>
+
+  <div class="section-container">
+    <h4>Konsepto</h4>
+    <p>Tumutukoy sa pagproseso ng mga hilaw na materyal at paggawa ng mga produkto na kinakailangan para sa pampublikong pamilihan
+     Naglalayong maiproseso ang mga hilaw na materyal upang makabuo ng produkto na ginagamit ng tao
+    </p>
+  </div>
+
+  <div class="section-container">
+    <h4>Sub-Sektor</h4>
+    <ul>
+      <li>Pagmimina – Pagkuha at pagproseso ng mga yamang mineral (metal, di-metal, o enerhiya) upang gawing tapos na produkto o kabahagi ng isang yaring kalakal.
+       Ang mismong produkto, hilaw man o naproseso ay nagbibigay ng kita para sa bansa
+      </li>
+      <li>Pagmamanupaktura – Paggawa ng mga produkto sa pamamagitan ng manual labor o ng mga makina.
+       Nagkakaroon ng pisikal o  kemikal na transpormasyon ang mga materyal o bahagi nito sa pagbuo ng mga bagong produkto
+      </li>
+      <li>Konstruksyon – Pagtatayo ng mga gusali, estruktura, at iba pang land improvements</li>
+      <li>Utilities – Pagtugon ng mga pangunahing pangangailangan ng mga mamamayan tulad ng tubig, kuryente, at gas
+       Paglalatag ng mga imprastraktura at angkop na teknolohiya upang maihatid ang serbisyo</li>
+    </ul>
+  </div>
+
+  <div class="section-container">
+    <h4>KAHALAGAHAN NG SEKTOR NG INDUSTRIYA SA PAMBANSANG KAUNLARAN</h4>
+    <ol>
+      <li>Tumatanggap ng mga produkto mula sa sektor ng agrikultura at ng serbisyo mula sa sektor ng paglilingkod</li>
+      <li>Nagkakaloob ng hanapbuhay sa maraming Pilipino</li>
+      <li>Nagpapasok ng dolyar sa bansa</li>
+      <li>Nakagagamit ng makabagong Teknolohiya</li>
+      <li>Gumagawa ng mga intermediate products (mga materyales o produkto na ginagamit sa paggawa ng iba pang produkto; hal. wheat - to make bread)</li>
+    </ol>
+  </div>
+
+  <div class="section-container">
+    <h4>Pagkaka-ugnay ng Agrikultura at Industriya</h4>
+    <ul>
+     <li>Nagmumula sa agrikultura ang mga hilaw na sangkap na ginagamit sa pagbuo ng mga produkto ng industriya</li>
+     <li>Ang mga ginagamit na traktora,sasakyang pangingisda, at iba pangprodukto ay mula sa industriya naginagamit ng mga magsasaka upangmagkaroon ng mataas na produksyonna magbibigay ng malaking kita sa sektor ng agrikultura.</li>
+     <li>Ang dami ng lakas-paggawa sa mga mamimili ay nagpapakita ng lubos na pagtutulungan sa mga sector ng industriya at agrikultura.</li>
+     <li>Ang agrikultura ang pinagmumulan ng pagkain ng mga industriya na siyang tumutugon sa mga pagkaing kinakailangan ng mga tao.</li>
+     <li>Ang industriya ang nagbibigay ng malaking kontribusyon sa ekonomiya.</li>
+     <li>Ang mga sangkap ay nagkakaroon ng transpormasyon dahil sa mga lakas–paggawa na gumagawa upang madagdagan ang halaga nito at lalo pang gumanda.</li>
+  </div>
+
+  <div class="section-container">
+    <h4>Patakaran sa Ekonomiya</h4>
+    <ul>
+      <li>Filipino First Policy : Nagsimula sa programang FIlipino Muna ni Pangulong Carlos P. Garcia. Naglalayong bigyan ng higit na malaking partisipasyon ang mga Pilipino sa pagpapatakbo ng ekonomiya</li>
+      <li>Oil Deregulation Law (R.A. 8479) : Nagbukas ng kompetisyon sa industriya ng langis. Ang pamilihan ang nagdidikta sa presyo ng petrolyo, at hindi ito maaaring pakialaman ng gobyerno</li>
+      <li>Microfinancing : Serbisyong pinansiyal na isinasagawa ng mga bangko na magpautang na mayroong mababang interes sa mahihirap na pamilya</li>
+      <li> Online Business </li>
+      <li> Retail Nationalization Act (R.A. 1180) : Sampung taong palugit sa mga dayuhang capitalist. Pilipino na may korporasyon o asosasyon lamang ang nasa kalakalang pagtitingi </li>
+      <li>Retail Trade Liberalization Act (R.A. 8762) : Nagpawalang-bisa sa RA 1180. Binuksan ang kalakalang pagtitingi sa mga dayuhan</li>
+      <li>Build-Operate-Transfer (R.A. 6957) : Binibigyan ng karapatang bumuo ng mga pasilidad sa kanilang mga sariling pondo at palakarin ito sa humigit-kumulang na 25 taon</li>
+      <li>Asset Privatization Trust (APT) : Itinatag upang mapangasiwaan ang pagbebenta ng mga korporasyong pagmamay-ari ng pamahalaan sa pribadong pagmamay-ari. Pinasimula ni Corazon Aquino</li>
+    </ul>
+  </div>
+
+  <div class="section-container">
+    <h4>SANGAY NG PAMAHALAAN NA TUMUTULONG SA SEKTOR NG AGRIKULTURA</h4>
+    <ul>
+      <li>Department of Trade and Industry (DTI):
+Tuwirang tumitingin at nangangalaga sa
+larangan ng industriya at pangangalakal.</li>
+      <li>Board of Investments (BOI): Tinutulungan
+ang mga nagsisimulang industriya at
+humihikayat sa mga dayuhang
+mamumuhunan na magnegosyo sa bansa</li>
+      <li>Philippine Economic Zone Authority
+(PEZA): Tumutulong sa mga namumuhunan
+na maghanap ng lugar upang pagtayuan ng
+negosyo.</li>
+      <li>Securities and Exchange Commission
+(SEC): Nagtatala at nagrerehistro sa mga
+kompanya sa bansa</li>
+    </ul>
+  </div>
+
+  <div class="section-container">
+    <h4>Karagdagang Impormasyon</h4>
+    <ul>
+      <li>Industriyalisasyon: paggamit ng mga
+makinarya at makabagong kagamitan sa
+paglinang ng mga industriya at pinagkukunang
+yaman</li>
+      <li>Sekundaryang sektor: ang kumakatawan sa
+industriya</li>
+    </ul>  
+  </div>
+
+  <div class="ap-image-row">
+    <figure class="ap-image-card">
+      <img src="ap-industriya1.jpg" alt="Industriya 1">
+    </figure>
+    <figure class="ap-image-card">
+      <img src="ap-industriya2.jpg" alt="Industriya 2">
+    </figure>
+  </div>
+</div>
+
+  <div class="lesson">
+  <h3 class="lesson-title">Lesson 4: Sektor ng Paglilingkod</h3>
+
+  <div class="section-container">
+    <h4>Sektor ng Paglilingkod</h4>
+    <ul>
+      <li>Ang umaalalay sa buong yugto ng produksyon, distribusyon, kalakalan, at pagkonsumo ng mga produkto sa loob o labas ng bansa.</li>
+      <li>Kilala rin ito bilang tersarya o ikatlong sektor ng ekonomiya matapos ang agrikultura at industriya.</li>
+    </ul>
+  </div>
+
+  <div class="section-container">
+    <h4>Pormal na Sektor sa Ilalim ng Paglilingkod</h4>
+    <ul>
+      <li><strong>Transportasyon, komunikasyon, at mga imbakan</strong>
+        <ul>
+          <li>Mga serbisyong pampublikong sasakyan, mga paglilingkod ng telepono at mga pinapaupahang bodega.</li>
+        </ul>
+      </li>
+
+      <li><strong>Kalakalan</strong>
+        <ul>
+          <li>Pagpapalitan ng iba’t-ibang produkto at serbisyo.</li>
+        </ul>
+      </li>
+
+      <li><strong>Pananalapi</strong>
+        <ul>
+          <li>Serbisyong may kinalaman sa bangko, insurance, at pamumuhunan.</li>
+          <li>Nagbibigay ng tulong pinansyal gaya ng mga bangko, bahay-sanglaan, atbp.</li>
+        </ul>
+      </li>
+
+      <li><strong>Paupahang bahay at Real Estate</strong>
+        <ul>
+          <li>Mga paupahan tulad ng mga apartment, mga developer ng subdivision, town house, at condominium.</li>
+        </ul>
+      </li>
+
+      <li><strong>Paglilingkod ng Pampribado</strong>
+        <ul>
+          <li>Lahat ng mga paglilingkod na nagmumula sa pribadong sektor ay kabilang dito.</li>
+        </ul>
+      </li>
+
+      <li><strong>Paglilingkod ng Pampubliko</strong>
+        <ul>
+          <li>Lahat ng paglilingkod na ipinagkakaloob ng pamahalaan.</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="section-container">
+    <h4>Mga Ahensiyang Tumutulong sa Sektor ng Paglilingkod</h4>
+    <ul>
+      <li><strong>Department of Labor and Employment (DOLE)</strong>
+        <ul>
+          <li>Pangangalaga sa kapakanan ng mga manggagawang Pilipino, pagtataguyod ng maayos na oportunidad sa trabaho, at regulasyon ng mga patakaran sa paggawa sa bansa.</li>
+        </ul>
+      </li>
+
+      <li><strong>Overseas Workers Welfare Administration (OWWA)</strong>
+        <ul>
+          <li>Tumitingin sa kapakanan ng mga Overseas Filipino Workers.</li>
+        </ul>
+      </li>
+
+      <li><strong>Philippine Overseas Employment Administration (POEA)</strong>
+        <ul>
+          <li>Isulong at paunlarin ang mga programa ukol sa paghahanapbuhay sa ibayong-dagat at pangalagaan ang kapakanan ng mga OFW.</li>
+          <li>Itinatag sa bisa ng Executive Order 797 (1982).</li>
+        </ul>
+      </li>
+
+      <li><strong>Technical Education and Skills Development Authority (TESDA)</strong>
+        <ul>
+          <li>Hikayatin ang buong partisipasyon ng industriya, paggawa, mga lokal na pamahalaan, at mga institusyong teknikal at bokasyonal upang sanayin at paunlarin ang kasanayan ng mga manggagawa sa bansa.</li>
+          <li>Itinatag sa bisa ng R.A. 7796 (1994).</li>
+        </ul>
+      </li>
+
+      <li><strong>Professional Regulation Commission (PRC)</strong>
+        <ul>
+          <li>Nangangasiwa at sumusubaybay sa gawain ng mga manggagawang propesyonal upang matiyak ang kahusayan sa paghahatid ng mga serbisyong propesyonal sa bansa.</li>
+        </ul>
+      </li>
+
+      <li><strong>Commission on Higher Education (CHED)</strong>
+        <ul>
+          <li>Nangangasiwa sa gawain ng mga pamantasan at kolehiyo sa bansa upang maitaas ang kalidad ng edukasyon sa mataas na antas.</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="section-container">
+    <h4>Mga Batas na Nangangalaga sa Karapatan ng Manggagawa</h4>
+    <ul>
+      <li><strong>Artikulo 94 - Holiday Pay</strong>
+        <ul>
+          <li>Tumutukoy sa bayad ng isang manggagawa na katumbas ng isang araw na sahod kahit hindi pumasok sa araw ng pista opisyal.</li>
+        </ul>
+      </li>
+
+      <li><strong>Republic Act 6727 - Wage Rationalization Act</strong>
+        <ul>
+          <li>Nagsaad ng mga mandato para sa pagsasaayos ng pinakamababang pasahod o minimum wage.</li>
+        </ul>
+      </li>
+
+      <li><strong>Artikulo 91-93 - Premium Pay</strong>
+        <ul>
+          <li>Karagdagang bayad sa manggagawa sa loob ng walong oras na trabaho sa araw ng pahinga at special days.</li>
+        </ul>
+      </li>
+
+      <li><strong>Artikulo 87 - Overtime Pay</strong>
+        <ul>
+          <li>Karagdagang bayad sa pagtatrabaho na lampas sa 8 oras sa isang araw.</li>
+        </ul>
+      </li>
+
+      <li><strong>Artikulo 86 - Night Shift Differential</strong>
+        <ul>
+          <li>Karagdagang bayad sa pagtatrabaho sa gabi na hindi bababa sa 10% ng kanyang regular na sahod sa bawat oras na ipinagtrabaho sa pagitan ng 10PM - 6AM.</li>
+        </ul>
+      </li>
+
+      <li><strong>Artikulo 96 - Service Charges</strong>
+        <ul>
+          <li>Lahat ng manggagawa sa isang establishment na kumokolekta ng service charges ay may karapatan sa isang pantay o tamang bahagi sa 85% na kabuuang koleksiyon.</li>
+        </ul>
+      </li>
+
+      <li><strong>Artikulo 95 - Service Incentive Leave</strong>
+        <ul>
+          <li>Bawat manggagawa na naglilingkod nang hindi kukulangin sa isang taon ay dapat magkaroon ng karapatan sa taunang service incentive leave ng limang araw na may bayad.</li>
+        </ul>
+      </li>
+
+      <li><strong>Republic Act 1161 - Maternity Leave</strong>
+        <ul>
+          <li>Ang bawat nagdadalang-taong manggagawa na nagtratrabaho sa pribadong sektor, kasal man o hindi, ay makakatanggap ng maternity leave.</li>
+          <li>Kasama ito sa benepisyong katumbas ng isang 100% na humigit kumulang na araw ng sahod ng manggagawa na nakapaloob sa batas.</li>
+        </ul>
+      </li>
+
+      <li><strong>Republic Act 8972 - Paternity Leave para sa mga solong magulang</strong>
+        <ul>
+          <li>Ipinagkaloob sa sinumang solong magulang o indibidwal na napag-iwanan ng responsibilidad ng pagiging magulang.</li>
+        </ul>
+      </li>
+
+      <li><strong>Republic Act 8187 - Paternity Leave</strong>
+        <ul>
+          <li>Maaaring magamit ng empleyadong lalaki sa unang apat na araw mula nang manganak ang legal na asawa na kaniyang kapisan.</li>
+          <li>Pakikipagpisan: obligasyon ng asawang babae at asawang lalaki na magsama sa isang bubong.</li>
+        </ul>
+      </li>
+
+      <li><strong>Presidential Decree 851 - Thirteenth Month Pay</strong>
+        <ul>
+          <li>Nagbibigay sa mga empleyado nang hindi lalagpas ng ika-24 ng Disyembre bawat taon.</li>
+        </ul>
+      </li>
+
+      <li><strong>Presidential Decree 626 - Benepisyo sa Employees Compensation Program</strong>
+        <ul>
+          <li>Isang compensation package sa mga manggagawa sa pampubliko at pampribadong sektor sakaling may kaganapang pagkakasakit na may kaugnayan sa trabaho.</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="section-container">
+    <h4>Kahalagahan</h4>
+    <ul>
+      <li>Tinitiyak na makakarating sa mga mamimili ang mga produkto mula sa mga sakahan o pagawaan.</li>
+      <li>Nagbibigay ng trabaho sa mga mamamayan.</li>
+      <li>Tinitiyak ang maayos na pag-iimbak, pagtitinda ng kalakal at iba pa.</li>
+      <li>Nagpapataas ng GDP ng bansa.</li>
+      <li>Nagpapasok ng dolyar sa bansa.</li>
+    </ul>
+  </div>
+
+  <div class="section-container">
+    <h4>Karagdagang Impormasyon</h4>
+    <ul>
+      <li><strong>Article 13, Section 3:</strong> Katarungang Panlipunan at mga Karapatang Pantao sa Paggawa — dapat magkaloob ang estado ng lubos na proteksyon sa paggawa, lokal at sa ibang bansa, organisado at di-organisado, at dapat itaguyod ang puspusang empleyo at pantay na mga pagkakataon sa trabaho at para sa lahat.</li>
+
+      <li><strong>Handbook Workers Statutory Monetary Benefits</strong>
+        <ul>
+          <li>Nagsilbing gabay at dagdag kaalaman tungkol sa umiiral na batas sa larangan ng paggawa.</li>
+        </ul>
+      </li>
+
+      <li><strong>Papel ng Sektor ng Paglilingkod</strong>
+        <ul>
+          <li>Nagkakaloob ng lakas-paggawa, kasanayan, kaalaman, at serbisyo para sa kaunlarang pang-ekonomiya.</li>
+        </ul>
+      </li>
+
+      <li><strong>Karl Marx:</strong> ang mga manggagawa ang tunay na prodyuser ng bansa.</li>
+
+      <li><strong>Kontraktuwalisasyon:</strong> ang isang manggagawa ay nakatali sa kontrata na mayroon siyang trabaho sa loob ng 5 buwan lamang. Kapag natapos na ang kontrata, kinakailangan niya nang umalis sa pinagtatrabahuhan.</li>
+
+      <li><strong>Brain Drain:</strong> pagkaubos ng mga manggagawa patungo sa ibang bansa.</li>
+
+      <li>8 oras ang regular na oras ng trabaho ng isang manggagawa sa isang araw.</li>
+    </ul>
+  </div>
+
+  <div class="ap-image-row">
+    <figure class="ap-image-card">
+      <img src="ap-paglilingkod1.jpg" alt="Agrikultura 1">
+    </figure>
+    <figure class="ap-image-card">
+      <img src="ap-paglilingkod2.jpg" alt="Agrikultura 2">
+    </figure>
+  </div>
+</div>
+
+  <div class="lesson">
+  <h3 class="lesson-title">Lesson 5: Impormal na Sektor</h3>
+
+  <div class="section-container">
+    <h4>Impormal na Sektor</h4>
+    <ul>
+      <li>Sektor ng ekonomiya na walang pormal o salat sa mga dokumentong kailangan sa pagsasagawa ng gawaing pang-ekonomiya.</li>
+      <li>Ang kita ng sektor na ito ay HINDI naisasama sa kabuuang Gross Domestic Product (GDP) ng bansa.</li>
+      <li>Paraan ng mamamayan upang magkaroon ng kabuhayan/dagdag kita sa tuwing panahon ng pangangailangan.</li>
+      <li>Ito ay nagdudulot rin ng pagkakalikha ng mga produkto at serbisyong tutugon sa ating mga pangangailangan.</li>
+      <li>Kilala rin sa tawag na Underground Economy.</li>
+    </ul>
+  </div>
+
+  <div class="section-container">
+    <h4>Halimbawa ng mga Taong Kabilang sa Sektor na Ito</h4>
+    <ol>
+      <li>Nagtitinda sa kalsada</li>
+      <li>Pedicab driver</li>
+      <li>Karpintero</li>
+      <li>Hindi rehistradong pampublikong sasakyan</li>
+    </ol>
+  </div>
+
+  <div class="section-container">
+    <h4>Katangian ng Impormal na Sektor</h4>
+    <ol>
+      <li>Hindi nakarehistro sa pamahalaan.</li>
+      <li>Hindi nagbabayad ng buwis mula sa kinita.</li>
+      <li>Walang legal at pormal na balangkas mula sa pamahalaan para sa pagnenegosyo.</li>
+    </ol>
+  </div>
+
+  <div class="section-container">
+    <h4>Iba’t Ibang Anyo ng Impormal na Sektor</h4>
+    <ol>
+      <li>Mga gawaing maaaring isakatuparan lamang sa loob ng tahanan.</li>
+      <li>Mga gawaing pansibiko, pagkakawanggawa, at panrelihiyon.</li>
+      <li>Mga sari-sari stores, pagtitinda sa labas ng bahay o sidewalk, paglalako ng kalakal o serbisyo.</li>
+      <li>Ilegal na gawain tulad ng pagnanakaw, pagbebenta ng ilegal na gamot, piracy, at prostitusyon.</li>
+    </ol>
+  </div>
+
+  <div class="section-container">
+    <h4>Kahalagahan ng Impormal na Sektor</h4>
+    <ol>
+      <li>Sinasalo nito ang mga mamamayan na hindi makapasok bilang mga regular na empleyado sa isang kompanya.</li>
+      <li>Nagbibigay ng pagkakataon sa maraming Pilipino na makapaghanapbuhay.</li>
+      <li>Nagsisilbing tagasalo ng mga mamamayang may mahigpit na pangangailangan.</li>
+      <li>Malaki ang naitutulong sa mga konsyumer ang mga kalakal at serbisyong mula sa impormal na sektor dahil sa MURA nitong halaga.</li>
+    </ol>
+  </div>
+
+  <div class="section-container">
+    <h4>Dahilan Kung Bakit Pumapasok sa Impormal na Sektor ang mga Mamamayan</h4>
+    <ol>
+      <li>Makaligtas sa pagbabayad ng buwis sa pamahalaan.</li>
+      <li>Makaiwas sa masyadong mahaba at masalimuot na proseso ng pakikipagtransaksyon sa pamahalaan (bureaucratic red tape).</li>
+      <li>Kawalan ng regulasyon mula sa pamahalaan na kung saan ang mga batas at programa ay hindi naitutupad nang maayos.</li>
+      <li>Makapaghanapbuhay nang hindi nangangailangan ng malaking kapital o puhunan.</li>
+      <li>Malabanan ang matinding kahirapan.</li>
+    </ol>
+  </div>
+
+  <div class="section-container">
+    <h4>Epekto sa Ekonomiya ng Impormal na Sektor</h4>
+    <ol>
+      <li>Pagbaba ng halaga ng nalilikom na buwis.</li>
+      <li>Banta sa kapakanan ng mga mamimili.</li>
+      <li>Paglaganap ng mga ilegal na gawain.</li>
+    </ol>
+  </div>
+
+  <div class="section-container">
+    <h4>Mga Batas, Programa, at Patakarang Pang-ekonomiya sa Impormal na Sektor</h4>
+    <ol>
+      <li><strong>Social Reform and Poverty Alleviation Act of 1997 (R.A 8425)</strong>
+        <ul>
+          <li>Iahon sa kahirapan ang mga Pilipinong kabilang sa impormal na sektor.</li>
+          <li>Upang maisakatuparan ang mga probisyon ng batas na ito ay itinatag ang National Anti-Poverty Commission.</li>
+        </ul>
+      </li>
+
+      <li><strong>Magna Carta of Women (R.A 9710)</strong>
+        <ul>
+          <li>Inaalis ang lahat ng uri ng diskriminasyon laban sa kababaihan.</li>
+        </ul>
+      </li>
+
+      <li><strong>Philippine Labor Code (P.D 422)</strong>
+        <ul>
+          <li>Pangunahing batas ng bansa para sa mga manggagawa na itinatag noong Mayo 1, 1974.</li>
+        </ul>
+      </li>
+
+      <li><strong>Technical Education and Skills Development Act of 1994 (R.A 7796)</strong>
+        <ul>
+          <li>Layuning palakasin ang pakikiisa ng iba't ibang sektor upang mapabuti ang kasanayan at kalidad ng yamang tao sa bansa.</li>
+        </ul>
+      </li>
+
+      <li><strong>Social Security Act of 1997 (R.A 8282)</strong>
+        <ul>
+          <li>Nagtatakda ng tungkulin ng estado na paunlarin at pangalagaan ang seguridad at kagalingang panlipunan ng mga manggagawa.</li>
+        </ul>
+      </li>
+
+      <li><strong>National Health Insurance Act of 1995 (R.A 7875)</strong>
+        <ul>
+          <li>Nagtatag ng Philippine Health Insurance Corporation (PhilHealth) upang matiyak na may maayos at sistematikong kaseguruhang pangkalusugan ang lahat ng Pilipino.</li>
+        </ul>
+      </li>
+    </ol>
+  </div>
+
+  <div class="section-container">
+    <h4>Mga Programa para sa Mamamayan</h4>
+    <ol>
+      <li><strong>Dole Integrated Livelihood Program (DILP)</strong>
+        <ul>
+          <li>Nagbibigay ng pagsasanay at tulong pangkabuhayan para sa sariling hanapbuhay.</li>
+        </ul>
+      </li>
+
+      <li><strong>Self-Employment Assistance Kaunlaran Program (SEA-K)</strong>
+        <ul>
+          <li>Tumutulong sa mahihirap na pamilya sa pagsasanay at pagsisimula ng negosyo.</li>
+        </ul>
+      </li>
+
+      <li><strong>Integrated Services for Livelihood Advancement of the Fisherfolks (ISLA)</strong>
+        <ul>
+          <li>Nagbibigay ng suporta sa pamamagitan ng pagsasanay at pagkakaloob ng kagamitan upang mapaunlad ang kanilang hanapbuhay.</li>
+        </ul>
+      </li>
+
+      <li><strong>Cash-For-Work Program (CWP)</strong>
+        <ul>
+          <li>Pansamantalang kita para sa nasalanta, kapalit ng trabahong pang-rehabilitasyon.</li>
+        </ul>
+      </li>
+
+      <li><strong>Pantawid Pamilyang Pilipino Program (4Ps)</strong>
+        <ul>
+          <li>Tulong-pinansyal sa pinakamahihirap na Pilipino kapalit ng pagsunod sa mga kondisyong pangkalusugan at pang-edukasyon ng kanilang mga anak.</li>
+        </ul>
+      </li>
+    </ol>
+  </div>
+
+  <div class="ap-image-row">
+    <figure class="ap-image-card">
+      <img src="ap-impormal1.jfif" alt="Agrikultura 1">
+    </figure>
+    <figure class="ap-image-card">
+      <img src="ap-impormal2.jpg" alt="Agrikultura 2">
+    </figure>
+  </div>
+</div>
+
+  <div class="lesson">
+  <h3 class="lesson-title">Lesson 6: Kalakalang Panlabas</h3>
+
+  <div class="section-container">
+    <h4>KALAKALANG PANLABAS</h4>
+    <ul>
+      <li>Palitan ng produkto at serbisyo sa pagitan ng mga bansa</li>
+      <li>Ito ay nagaganap sapagkat walang bansa ang maaaring makatugon sa lahat ng kanyang pangangailangan ng walang tulong mula sa ibang bansa.</li>
+      <li>Bilateral: 2 bansa (hal. U.S at PH)</li>
+      <li>Bloc: Organisasyon at 1 bansa (hal. APEC at PH)</li>
+      <li><strong>EKSPORT (Pagluluwas):</strong> pagpapadala ng mga produkto at serbisyo sa ibang bansa</li>
+      <li><strong>IMPORT (Pag-aangkat):</strong> pagbili ng kalakal mula sa ibang bansa</li>
+    </ul>
+  </div>
+
+  <div class="section-container">
+    <h4>DAHILAN NG KALAKALANG PANLABAS</h4>
+    <ol>
+      <li>Pagkakaiba ng Teknolohiya</li>
+      <li>Pagkakaiba sa Pinagkukunang Yaman</li>
+      <li>Pagkakaiba sa Panlasa</li>
+      <li>Pagkakaiba sa Halaga ng Produksyon</li>
+    </ol>
+  </div>
+
+  <div class="section-container">
+    <h4>PATAKARANG UMAAPEKTO SA KALAKALANG PANLABAS</h4>
+
+    <p><strong>A. Taripa / Tariff:</strong></p>
+    <ul>
+      <li>Buwis sa mga produktong inaangkat</li>
+      <li>Nagpapataas ng presyo at nagpapababa ng benta ng inaangkat ng produkto</li>
+      <li>Nagpapataw ng mataas na taripa pang mapigil ang pagpasok ng dayuhang produktong kalaban ng lokal na produkto.</li>
+    </ul>
+
+    <p><strong>B. Kota (Quota):</strong></p>
+    <ul>
+      <li>Maaaring limitahan (kotahan) ang pagpasok ng mga kalabang produkto</li>
+    </ul>
+
+    <p><strong>C. Subsidy:</strong></p>
+    <ul>
+      <li>Tulong na ibinibigay ng gobyerno upang bumaba ang halaga ng produksyon ng mga lokal na produkto.</li>
+    </ul>
+  </div>
+
+  <div class="section-container">
+    <h4>BATAYAN NG KALAKALANG PANLABAS (David Ricardo)</h4>
+
+    <p><strong>Absolute Advantage</strong></p>
+    <ul>
+      <li>Nakakalikha ng mas maraming bilang ng produkto gamit ang mas kaunting salik ng produksyon kumpara sa ibang bansa.</li>
+    </ul>
+
+    <p><strong>Comparative Advantage</strong></p>
+    <ul>
+      <li>Ang bansa ay magkakaroon ng espesyalisasyon sa paglikha ng kalakal.</li>
+      <li>Kapag kaya ng bansa gawin ang kalakal ng mas efficient kumpara sa ibang bansa.</li>
+      <li>Hal. Cebu may comparative advantage sa pagluto ng Lechon</li>
+    </ul>
+
+    <p><strong>Balance of Trade (BOT)</strong></p>
+    <ul>
+      <li>Kalagayan ng kabayaran ng pagluluwas (export) at sa pag-aangkat (import).</li>
+      <li>Trade Deficit: import > export</li>
+      <li>Trade Surplus: import < export</li>
+    </ul>
+  </div>
+
+  <div class="section-container">
+    <h4>KABUTIHAN NG PAKIKIPAGKALAKALAN</h4>
+    <ul>
+      <li>Mas maraming produkto ang mapagpipilian sa pamilihan.</li>
+      <li>Napapataas nito ang kalidad ng mga produkto na nabibili sa pamilihan</li>
+      <li>Nagkakaroon ng pagkakaunawaan ang mamamayan ng bansang nakikipagkalakalan.</li>
+      <li>Lumalawak ang pamilihan ng mga produkto sa bansa.</li>
+    </ul>
+  </div>
+
+  <div class="section-container">
+    <h4>DI-KABUTIHAN NG PAKIKIPAGKALAKALAN</h4>
+    <ul>
+      <li>Nagiging palaasa ang mga mamamayan sa produktong imported</li>
+      <li>Hindi nalilinang ang pagkamalikhain ng mga mamamayan dahil umaasa na lamang sila sa mga produktong gawa sa ibang bansa</li>
+      <li>Pagkawala ng sariling pagkakakilanlan bunga ng pagpasok ng dayuhang kultura sa lipunan</li>
+    </ul>
+  </div>
+
+  <div class="section-container">
+    <h4>SAMAHANG PANDAIGDIGANG PANG-EKONOMIKO</h4>
+
+    <p><strong>World Trade Organization (WTO)</strong></p>
+    <ul>
+      <li>Pinasinayaan at nabuo noong Enero 1, 1995</li>
+      <li>Samahang namamahala sa pandaigdigang patakaran ng sistema ng kalakalan o global trading system sa pagitan ng mga kasaping estado o member states</li>
+    </ul>
+
+    <p><strong>Layunin</strong></p>
+    <ul>
+      <li>Pagsusulong ng maayos na kalakalan sa pamamagitan ng pagpapababa ng hadlang sa kalakalan (trade barriers)</li>
+      <li>Plataporma para sa negosasyon at tulong-teknikal sa developing countries.</li>
+      <li>Paggamit ng trade sanction sa mga kasaping hindi sumusunod sa desisyon ng samahan</li>
+    </ul>
+
+    <p><strong>Asia-Pacific Economic Council (APEC)</strong></p>
+    <ul>
+      <li>Isulong ang kaunlarang pang-ekonomiya at katiwasayan sa rehiyong Asia-Pacific</li>
+      <li>Itinatag noong Nobyembre 1989</li>
+    </ul>
+
+    <p><strong>Layunin</strong></p>
+    <ul>
+      <li>Liberalisasyon ng pakikipagkalakalan at pamumuhunan</li>
+      <li>Pagpapabilis at pagpapadali ng pagnenegosyo</li>
+      <li>Pagtutulungang pang-ekonomiya at teknikal</li>
+    </ul>
+
+    <p><strong>Association of Southeast Asian Nations (ASEAN)</strong></p>
+    <ul>
+      <li>Paunlarin at isulong ang malayang kalakalan sa bawat kasapi ng ASEAN pati ang mga bansang dialogue partner nito.</li>
+      <li>Itinatag noong August 8, 1967</li>
+    </ul>
+
+    <p><strong>Layunin</strong></p>
+    <ul>
+      <li>Upang maging ganap ito, nabuo ang ASEAN Free Trade Area (AFTA) noong January 28, 1992, sa Singapore.</li>
+      <li>Nakabatay sa Common Effective Preferential Tariff (CEPT) na nag-aalis ng taripa at quota para sa mas malayang daloy ng produkto sa ASEAN.</li>
+    </ul>
+  </div>
+
+  <div class="section-container">
+    <h4>PROGRAMANG NAGTATAGUYOD SA KALAKALANG PANLABAS</h4>
+
+    <p><strong>a. Liberalisasyon sa Sektor ng Pagbabangko (R.A 7721)</strong></p>
+    <ul>
+      <li>Pinapayagan ang dayuhang bangko na magtayo at magpatakbo ng sangay sa bansa.</li>
+    </ul>
+
+    <p><strong>b. Foreign Trade Services Corps (FTSC)</strong></p>
+    <ul>
+      <li>Nagtataguyod ng mga lokal na produkto sa pandaigdigang pamilihan sa pamamagitan ng iba't ibang estratehiya.</li>
+    </ul>
+
+    <p><strong>c. Trade and Industry Information Center (TIIC)</strong></p>
+    <ul>
+      <li>Nangangalap at nagpapalaganap ng datos at impormasyon tungkol sa ekonomiya, kalakalan, at industriya, pamahalaan, at kapakanan ng mamimili.</li>
+    </ul>
+
+    <p><strong>d. Center for Industrial Competitiveness</strong></p>
+    <ul>
+      <li>Naglulunsad ng mga programa at pagsasanay upang mapahusay ang kakayahan at produktibidad ng manggagawa.</li>
+    </ul>
+  </div>
+
+  <div class="section-container">
+    <h4>KARAGDAGANG IMPORMASYON</h4>
+    <ul>
+      <li>Liberalisasyon: pagtanggal ng kota at taripa sa pakikipagkalakalan.</li>
+      <li>Deregulasyon: pagtanggal ng pakikialam ng pamahalaan sa panlabas na kalakalan.</li>
+      <li>Dolyar: common currency sa pandaigdigang kalakalan.</li>
+      <li>Pribatisasyon: pagbebenta ng pag-aari ng gobyerno sa mga pribadong kompanya.</li>
+      <li>Balance of Payment: pandaigdigang batayan o sukatan para sa mga gawaing pang-ekonomiya.</li>
+      <li>Dumping: pagdagsa ng mga sobrang kalakal ng isang mas malakas na bansa tungo sa mas mahinang bansa.</li>
+      <li>Kota/Quota: ang takdang dami ng mga produkto na maaaring iluwas sa isang bansa.</li>
+      <li>Balance of Payment: talaang nagpapakita ng transaksyon ng isang bansa sa iba't ibang bahagi ng mundo.</li>
+    </ul>
+  </div>
+
+  <div class="ap-image-row">
+    <figure class="ap-image-card">
+      <img src="ap-kalakalan1.png" alt="Agrikultura 1">
+    </figure>
+    <figure class="ap-image-card">
+      <img src="ap-kalakalan2.png" alt="Agrikultura 2">
+    </figure>
+  </div>
+</div>
+    </section>
+  </main>
+
+<script>
+document.querySelectorAll("nav a").forEach(link => {
+  link.addEventListener("click", function(e) {
+    const target = document.querySelector(this.getAttribute("href"));
+    target.scrollIntoView({ behavior: "smooth" });
+  });
+});
+
+const sections = document.querySelectorAll("main section");
+const navLinks = document.querySelectorAll("nav a");
+
+window.addEventListener("scroll", () => {
+  let current = "";
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 150;
+    const sectionHeight = section.clientHeight;
+    if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+      current = section.getAttribute("id");
+    }
+  });
+  navLinks.forEach(link => {
+    link.classList.remove("active");
+    if (link.getAttribute("href") === "#" + current) {
+      link.classList.add("active");
+    }
+  });
+});
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = "1";
+      entry.target.style.transform = "translateY(0)";
+    }
+  });
+});
+
+document.querySelectorAll(".section-container, .lesson").forEach(el => {
+  el.style.opacity = "0";
+  el.style.transform = "translateY(40px)";
+  el.style.transition = "all 0.6s ease";
+  observer.observe(el);
+});
+
+function showQuarter(quartDivs, idPrefix, selected) {
+  quartDivs.forEach(div => {
+    if(div.id === idPrefix + selected){
+      div.style.display = 'block';
+      setTimeout(() => div.classList.add('show'), 10);
+    } else {
+      div.classList.remove('show');
+      div.style.display = 'none';
+    }
+  });
+}
+
+const tleDropdown = document.getElementById('tle-quarter');
+const tleQuarters = document.querySelectorAll('.tle-quarter');
+showQuarter(tleQuarters, 'tle-', tleDropdown.value);
+tleDropdown.addEventListener('change', () => {
+  showQuarter(tleQuarters, 'tle-', tleDropdown.value);
+});
+
+const apDropdown = document.getElementById('ap-quarter');
+const apQuarters = document.querySelectorAll('.ap-quarter');
+showQuarter(apQuarters, 'ap-', apDropdown.value);
+apDropdown.addEventListener('change', () => {
+  showQuarter(apQuarters, 'ap-', apDropdown.value);
+});
+
+const topBtn = document.createElement("button");
+
+topBtn.innerHTML = "↑";
+topBtn.style.position = "fixed";
+topBtn.style.bottom = "30px";
+topBtn.style.right = "30px";
+topBtn.style.padding = "10px 15px";
+topBtn.style.fontSize = "20px";
+topBtn.style.border = "none";
+topBtn.style.borderRadius = "10px";
+topBtn.style.background = "#8b5cf6";
+topBtn.style.color = "white";
+topBtn.style.cursor = "pointer";
+topBtn.style.display = "none";
+topBtn.style.boxShadow = "0 4px 10px rgba(0,0,0,0.2)";
+
+document.body.appendChild(topBtn);
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 400) {
+    topBtn.style.display = "block";
+  } else {
+    topBtn.style.display = "none";
+  }
+});
+
+topBtn.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+
+const learnBtn = document.querySelector(".learn-more");
+const transition = document.getElementById("expand-transition");
+
+learnBtn.addEventListener("click", function(e){
+  e.preventDefault();
+
+  transition.classList.add("active");
+
+  setTimeout(()=>{
+    document.querySelector("#personal-space").scrollIntoView({
+      behavior:"smooth"
+    });
+
+    setTimeout(()=>{
+      transition.classList.remove("active");
+    },400);
+
+  },600);
+});
+
+const eventsDropdown = document.querySelector('.events-dropdown');
+const eventsMenu = document.querySelector('.events-menu');
+
+eventsDropdown.addEventListener('mouseenter', () => eventsMenu.style.display = 'block');
+eventsDropdown.addEventListener('mouseleave', () => eventsMenu.style.display = 'none');
+eventsMenu.addEventListener('mouseenter', () => eventsMenu.style.display = 'block');
+eventsMenu.addEventListener('mouseleave', () => eventsMenu.style.display = 'none');
+
+eventsMenu.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    document.querySelectorAll('.events-quarter').forEach(div => div.style.display = 'none');
+    const target = document.querySelector(link.getAttribute('href'));
+    target.style.display = 'block';
+    target.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+</script>
+</body>
+</html>
